@@ -8,7 +8,7 @@ public class GUIGame extends JFrame implements ActionListener {
     // GUI Components
     private final CardLayout cardLayout = new CardLayout();
     private final JFrame gameFrame;
-    private final JPanel containerPanel;
+    private final JPanel gamePanel;
     private final JPanel titleScreenPanel;
     private final JPanel mapPanel;
     private final JButton mapTitleButton;
@@ -19,7 +19,7 @@ public class GUIGame extends JFrame implements ActionListener {
 
         // Frame and panel setup
         gameFrame = new JFrame("Title Screen");
-        containerPanel = new JPanel();
+        gamePanel = new JPanel();
         titleScreenPanel = new JPanel();
         mapPanel = new JPanel();
 
@@ -33,14 +33,14 @@ public class GUIGame extends JFrame implements ActionListener {
         titleScreenPanel.add(titleNewGameButton);
         mapPanel.add(mapTitleButton);
 
-        // Organize panels in the containerPanel
-        containerPanel.setLayout(cardLayout);
-        containerPanel.add(titleScreenPanel, "TITLE");
-        containerPanel.add(mapPanel, "MAP");
-        cardLayout.show(containerPanel, "TITLE"); // Show the title screen first
+        // Organize panels in the gamePanel
+        gamePanel.setLayout(cardLayout);
+        gamePanel.add(titleScreenPanel, "TITLE");
+        gamePanel.add(mapPanel, "MAP");
+        cardLayout.show(gamePanel, "TITLE"); // Show the title screen first
 
         // Add everything to gameFrame
-        gameFrame.add(containerPanel);
+        gameFrame.add(gamePanel);
         gameFrame.setResizable(false);
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gameFrame.setSize(guiSettings.getX(), guiSettings.getY()); // Res based on user input
@@ -50,10 +50,10 @@ public class GUIGame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == titleNewGameButton) {
-            cardLayout.show(containerPanel, "MAP");
+            cardLayout.show(gamePanel, "MAP");
         }
         if (e.getSource() == mapTitleButton) {
-            cardLayout.show(containerPanel, "TITLE");
+            cardLayout.show(gamePanel, "TITLE");
         }
     }
 }

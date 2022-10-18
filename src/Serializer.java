@@ -24,7 +24,9 @@ public class Serializer{
 
     // Serializes a settings object into a file in save directory
     public static void serSettings(Settings settings) throws IOException {
+        ensureSaveDirectory();
         String settingsPath = "save/Settings.ser";
+
         FileOutputStream fileOut = new FileOutputStream(settingsPath);
         ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
 
@@ -34,4 +36,13 @@ public class Serializer{
         objectOut.close();
 
     }
+
+    //Checks for the existence of a save directory; creates one if it doesn't exist
+    private static void ensureSaveDirectory() {
+        File saveFolder = new File ("save");
+        if (!saveFolder.exists()) {
+            System.out.println("Directory created:" + saveFolder.mkdir());
+        }
+    }
+
 }
