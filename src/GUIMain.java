@@ -10,15 +10,11 @@ public class GUIMain {
     public static void setup(Settings settings) {
         if (settings != null) {
             guiSettings = settings;
-            launchTitleScreen();
+            activeWindow = new GUITitleScreen(guiSettings); // Launches the Title Screen Window
         }
         else {
             activeWindow = new GUISettings(); // No settings found, prompt user for settings
         }
-    }
-
-    public static void launchTitleScreen() {
-        activeWindow = new GUITitleScreen(guiSettings); // Launches the Title Screen Window
     }
 
 }
