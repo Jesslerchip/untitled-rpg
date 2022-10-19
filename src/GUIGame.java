@@ -15,7 +15,7 @@ public class GUIGame extends JFrame implements ActionListener {
     private final JButton titleNewGameButton;
 
     // Constructor for the game window
-    GUIGame (Settings guiSettings) {
+    public GUIGame (Settings guiSettings) {
 
         // Frame and panel setup
         gameFrame = new JFrame("Title Screen");
@@ -26,8 +26,8 @@ public class GUIGame extends JFrame implements ActionListener {
         // Button setup
         mapTitleButton = new JButton("Title");
         titleNewGameButton = new JButton("New Game");
-        titleNewGameButton.addActionListener(this);
-        mapTitleButton.addActionListener(this);
+        titleNewGameButton.addActionListener(e->cardLayout.show(gamePanel, "MAP"));
+        mapTitleButton.addActionListener(e->cardLayout.show(gamePanel, "TITLE"));
 
         // Add components to their respective panels
         titleScreenPanel.add(titleNewGameButton);
@@ -49,11 +49,5 @@ public class GUIGame extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == titleNewGameButton) {
-            cardLayout.show(gamePanel, "MAP");
-        }
-        if (e.getSource() == mapTitleButton) {
-            cardLayout.show(gamePanel, "TITLE");
-        }
     }
 }

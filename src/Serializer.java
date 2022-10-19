@@ -41,7 +41,7 @@ public class Serializer{
     private static void ensureSaveDirectory() {
         File saveFolder = new File ("save");
         if (!saveFolder.exists()) {
-            System.out.println("Directory created:" + saveFolder.mkdir());
+            System.out.println("Save directory created: " + saveFolder.mkdir());
         }
     }
 
