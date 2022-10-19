@@ -4,7 +4,7 @@ public class Serializer{
 
     // deserializes and returns a settings file if exists in save directory, otherwise returns null
     public static Settings dserSettings() throws IOException, ClassNotFoundException {
-        String settingsPath = "save/Settings.ser";
+        String settingsPath = "save/Settings.sav";
         File settingsFile = new File(settingsPath);
         if (settingsFile.exists()) {
             FileInputStream fileIn = new FileInputStream(settingsPath);
@@ -25,7 +25,7 @@ public class Serializer{
     // Serializes a settings object into a file in save directory
     public static void serSettings(Settings settings) throws IOException {
         ensureSaveDirectory();
-        String settingsPath = "save/Settings.ser";
+        String settingsPath = "save/Settings.sav";
 
         FileOutputStream fileOut = new FileOutputStream(settingsPath);
         ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
