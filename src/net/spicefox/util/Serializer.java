@@ -1,3 +1,5 @@
+package net.spicefox.util;
+
 import java.io.*;
 
 public class Serializer{

@@ -1,3 +1,7 @@
+package net.spicefox.gui;
+
+import net.spicefox.util.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
@@ -19,7 +23,7 @@ public class GUI extends JFrame {
     // End of variables, objects, etc.
 
 
-    // Constructor for the game window if Settings object exists
+    // Constructor for the game window if net.spicefox.util.Settings object exists
     public GUI(Settings guiSettings) {
 
         final CardLayout cardLayout = new CardLayout();
@@ -54,11 +58,11 @@ public class GUI extends JFrame {
         gameFrame.setVisible(true);
     }
 
-    // GUI for settings prompt if no settings exist
+    // gui.GUI for settings prompt if no settings exist
     public GUI () {
 
         // Frame settings
-        settingsFrame = new JFrame("Settings");
+        settingsFrame = new JFrame("net.spicefox.util.Settings");
         settingsFrame.setSize(300, 85);
         settingsFrame.setLayout(new FlowLayout());
 
@@ -110,10 +114,10 @@ public class GUI extends JFrame {
         settingsFrame.setVisible(true);
     }
 
-    // Submit button stores choices in GUIMain's Settings field
+    // Submit button stores choices in GUIMain's net.spicefox.util.Settings field
     public void resolutionSubmit () {
         int[] newResolution = resolutions.get((String)settingsComboBox.getSelectedItem());
-        Settings settings = new Settings (newResolution[0], newResolution[1]);
+        Settings settings = new Settings(newResolution[0], newResolution[1]);
         Main.setup(settings); // Trigger title screen with new settings object
         try {
             Serializer.serSettings(settings);

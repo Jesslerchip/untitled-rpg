@@ -1,3 +1,5 @@
+package net.spicefox.entity;
+
 public abstract class Entity {
     private String name;
     private int hp, mana, speed, attack, defense;
