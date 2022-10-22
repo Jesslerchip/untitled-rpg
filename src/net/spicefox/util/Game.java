@@ -17,4 +17,8 @@ public class Game implements Serializable {
     public Mob getMob() {
         return mob;
     }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
 }

@@ -5,18 +5,16 @@ import java.io.*;
 public class Serializer{
 
     // deserializes and returns a settings file if exists in save directory, otherwise returns null
-    public static Settings dserSettings() throws IOException, ClassNotFoundException {
+    public static Settings dserSettings() {
         String settingsPath = "save/Settings.sav";
         File settingsFile = new File(settingsPath);
         if (settingsFile.exists()) {
-            FileInputStream fileIn = new FileInputStream(settingsPath);
-            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
-
-            Settings settings = (Settings)objectIn.readObject();
-
-            fileIn.close();
-            objectIn.close();
-
+            Settings settings = null;
+            try (ObjectInputStream objectIn = new ObjectInputStream(new FileInputStream(settingsPath))) {
+                settings = (Settings) objectIn.readObject();
+            } catch (IOException | ClassNotFoundException e) {
+                System.out.println("dserSettings: File couldn't be opened!");
+            }
             return settings;
         }
         else {
@@ -40,18 +38,15 @@ public class Serializer{
     }
 
     // deserializes and returns a settings file if exists in save directory, otherwise returns null
-    public static Game dserGame() throws IOException, ClassNotFoundException {
-        String gamePath = "save/Game.sav";
+    public static Game dserGame(String gamePath) {
         File gameFile = new File(gamePath);
         if (gameFile.exists()) {
-            FileInputStream fileIn = new FileInputStream(gamePath);
-            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
-
-            Game game = (Game)objectIn.readObject();
-
-            fileIn.close();
-            objectIn.close();
-
+            Game game = null;
+            try (ObjectInputStream objectIn = new ObjectInputStream(new FileInputStream(gamePath))) {
+                game = (Game) objectIn.readObject();
+            } catch (IOException | ClassNotFoundException e) {
+                System.out.println("dserGame: File couldn't be opened!");
+            }
             return game;
         }
         else {

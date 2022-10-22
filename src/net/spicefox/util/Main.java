@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
+    public static void main(String[] args) {
         // Stored settings for resolution and audio
         System.setProperty( "sun.java2d.uiScale", "1.0" ); // Forces UI scale to 1.0
         setup(Serializer.dserSettings()); // setup leads to title screen

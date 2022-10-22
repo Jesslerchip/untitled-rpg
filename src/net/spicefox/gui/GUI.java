@@ -32,25 +32,33 @@ public class GUI extends JFrame {
     // Constructor for the game window if net.spicefox.util.Settings object exists
     public GUI(Settings guiSettings) {
 
+        Game game = new Game();
+        Game game1 = Serializer.dserGame("save/Game1.sav");
+        Game game2 = Serializer.dserGame("save/Game2.sav");
+        Game game3 = Serializer.dserGame("save/Game3.sav");
+
         // Frame and panel setup
+        gameFrame = new JFrame("Untitled RPG Game");
+        gamePanel = new JPanel();
+        titleScreenPanel = new PanelTitleScreen(game, game1, game2, game3);
+        cardLayout = new CardLayout();
+        gamePanel.setLayout(cardLayout);
+        gamePanel.add(titleScreenPanel, "TITLE");
+        cardLayout.show(gamePanel, "TITLE"); // Show the title screen first
+
+        nameEntryPanel = new PanelNameEntry(game);
         battlePanel = new PanelBattle();
         bestiaryPanel = new PanelBestiary();
         inventoryPanel = new PanelInventory();
-        mapPanel = new PanelMap();
-        nameEntryPanel = new PanelNameEntry();
+        mapPanel = new PanelMap(game);
         saveSlotsPanel = new PanelSaveSlots();
         settingsInGamePanel = new PanelSettingsInGame();
         shopHomePanel = new PanelShopHome();
         shopBuyPanel = new PanelShopBuy();
         shopSellPanel = new PanelShopSell();
-        titleScreenPanel = new PanelTitleScreen();
-        gameFrame = new JFrame("Untitled RPG Game");
-        gamePanel = new JPanel();
 
 
         // Organize panels in the gamePanel
-        cardLayout = new CardLayout();
-        gamePanel.setLayout(cardLayout);
         gamePanel.add(battlePanel, "BATTLE");
         gamePanel.add(bestiaryPanel, "BESTIARY");
         gamePanel.add(inventoryPanel, "INVENTORY");
@@ -61,9 +69,6 @@ public class GUI extends JFrame {
         gamePanel.add(shopHomePanel, "SHOP_HOME");
         gamePanel.add(shopBuyPanel, "SHOP_BUY");
         gamePanel.add(shopSellPanel, "SHOP_SELL");
-        gamePanel.add(titleScreenPanel, "TITLE");
-
-        cardLayout.show(gamePanel, "TITLE"); // Show the title screen first
 
         // Add everything to gameFrame
         gameFrame.add(gamePanel);
@@ -130,8 +135,10 @@ public class GUI extends JFrame {
     }
 
     //Switches visible panel
-    public static void changeActivePanel(String panelName){
-        gamePanel.add(new PanelBattle(), "BATTLE");
+    public static void changeActivePanel(String panelName){ cardLayout.show(gamePanel, panelName); }
+
+    public PanelMap getMapPanel() {
+        return mapPanel;
     }
 
     // Submit button stores choices in GUIMain's Settings field

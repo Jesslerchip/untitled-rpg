@@ -9,6 +9,8 @@ public abstract class Entity {
     // TODO: add gear
 
     // GETTERS
+    public String getName() { return name; }
+
     public int getHp() {
         return hp;
     }
