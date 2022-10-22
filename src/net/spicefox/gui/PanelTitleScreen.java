@@ -7,6 +7,7 @@ public class PanelTitleScreen extends JPanel{
     public PanelTitleScreen() {
         titleNewGameButton = new JButton("New Game");
         titleNewGameButton.addActionListener(e->GUI.changeActivePanel("MAP"));
+        this.add(titleNewGameButton);
     }
 
 }

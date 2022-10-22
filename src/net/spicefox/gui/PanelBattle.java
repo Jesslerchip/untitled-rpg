@@ -8,10 +8,10 @@ public class PanelBattle extends JPanel {
     JButton potionButton;
     JButton familiarButton;
     public PanelBattle() {
-        attackButton = new JButton("attack");
-        shieldButton = new JButton("shield");
-        potionButton = new JButton("potion");
-        familiarButton = new JButton("familiar");
+        attackButton = new JButton("Attack");
+        shieldButton = new JButton("Shield");
+        potionButton = new JButton("Potion");
+        familiarButton = new JButton("Familiar");
 
         attackButton.setFocusable(false);
         shieldButton.setFocusable(false);
