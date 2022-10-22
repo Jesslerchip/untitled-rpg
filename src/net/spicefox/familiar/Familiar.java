@@ -2,15 +2,15 @@ package net.spicefox.familiar;
 
 public class Familiar {
 
-    private int level = 1;
-    private int xp = 0;
-    private int xpMax = 20;
+    private int level;
+    private int xp;
+    private int xpMax;
 
     // HP, Mana, Speed, Damage, Defense, Accuracy Modifiers
-    private double[] modifiers = {1.0, 1.0, 1.0, 1.0, 1.0, 1.0};
+    private double[] modifiers;
 
     // Flags
-    private boolean isUnlocked = false;
+    private boolean isUnlocked;
 
     // Level Up Methods
     public void addLevel() {

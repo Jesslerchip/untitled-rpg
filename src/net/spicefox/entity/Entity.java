@@ -6,9 +6,9 @@ public abstract class Entity {
     private int vitality, magick, dexterity, strength, resistance, focus;
     private double critChance;
 
-    //TODO: add gear
+    // TODO: add gear
 
-    //GETTERS
+    // GETTERS
     public int getHp() {
         return hp;
     }
@@ -58,7 +58,7 @@ public abstract class Entity {
     }
 
 
-    //SETTERS
+    // SETTERS
     public void setName(String name) {
         this.name = name;
     }
