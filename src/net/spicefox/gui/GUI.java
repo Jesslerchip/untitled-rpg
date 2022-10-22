@@ -10,34 +10,30 @@ import java.util.HashMap;
 public class GUI extends JFrame {
 
     // Variables, objects, etc.
-    JFrame gameFrame;
-    static JPanel gamePanel;
-    static CardLayout cardLayout;
+    private JFrame gameFrame;
+    private static JPanel gamePanel;
+    private static CardLayout cardLayout;
 
-    PanelBattle battlePanel;
-    PanelBestiary bestiaryPanel;
-    PanelInventory inventoryPanel;
-    PanelMap mapPanel;
-    PanelNameEntry nameEntryPanel;
-    PanelSaveSlots saveSlotsPanel;
-    PanelSettingsInGame settingsInGamePanel;
-    PanelShopHome shopHomePanel;
-    PanelShopBuy shopBuyPanel;
-    PanelShopSell shopSellPanel;
-    PanelTitleScreen titleScreenPanel;
+    private PanelBattle battlePanel;
+    private PanelBestiary bestiaryPanel;
+    private PanelInventory inventoryPanel;
+    private PanelMap mapPanel;
+    private PanelNameEntry nameEntryPanel;
+    private PanelSaveSlots saveSlotsPanel;
+    private PanelSettingsInGame settingsInGamePanel;
+    private PanelShopHome shopHomePanel;
+    private PanelShopBuy shopBuyPanel;
+    private PanelShopSell shopSellPanel;
+    private PanelTitleScreen titleScreenPanel;
 
-    JFrame settingsFrame;
-    JComboBox<String> settingsComboBox;
-    JButton submitButton;
-    HashMap<String, int[]> resolutions;
-
-
+    private JFrame settingsFrame;
+    private JComboBox<String> settingsComboBox;
+    private JButton submitButton;
+    private HashMap<String, int[]> resolutions;
     // End of variables, objects, etc.
-
 
     // Constructor for the game window if net.spicefox.util.Settings object exists
     public GUI(Settings guiSettings) {
-
         cardLayout = new CardLayout();
 
         // Frame and panel setup
