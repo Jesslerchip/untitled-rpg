@@ -11,43 +11,62 @@ public class GUI extends JFrame {
 
     // Variables, objects, etc.
     JFrame gameFrame;
-    JPanel gamePanel;
-    JPanel titleScreenPanel;
-    JPanel mapPanel;
-    JButton mapTitleButton;
-    JButton titleNewGameButton;
+    static JPanel gamePanel;
+    static CardLayout cardLayout;
+
+    PanelBattle battlePanel;
+    PanelBestiary bestiaryPanel;
+    PanelInventory inventoryPanel;
+    PanelMap mapPanel;
+    PanelNameEntry nameEntryPanel;
+    PanelSaveSlots saveSlotsPanel;
+    PanelSettingsInGame settingsInGamePanel;
+    PanelShopHome shopHomePanel;
+    PanelShopBuy shopBuyPanel;
+    PanelShopSell shopSellPanel;
+    PanelTitleScreen titleScreenPanel;
+
     JFrame settingsFrame;
     JComboBox<String> settingsComboBox;
     JButton submitButton;
     HashMap<String, int[]> resolutions;
+
+
     // End of variables, objects, etc.
 
 
     // Constructor for the game window if net.spicefox.util.Settings object exists
     public GUI(Settings guiSettings) {
 
-        final CardLayout cardLayout = new CardLayout();
+        cardLayout = new CardLayout();
 
         // Frame and panel setup
         gameFrame = new JFrame("Untitled RPG Game");
         gamePanel = new JPanel();
-        titleScreenPanel = new JPanel();
-        mapPanel = new JPanel();
 
-        // Button setup
-        mapTitleButton = new JButton("Title");
-        titleNewGameButton = new JButton("New Game");
-        titleNewGameButton.addActionListener(e->cardLayout.show(gamePanel, "MAP"));
-        mapTitleButton.addActionListener(e->cardLayout.show(gamePanel, "TITLE"));
-
-        // Add components to their respective panels
-        titleScreenPanel.add(titleNewGameButton);
-        mapPanel.add(mapTitleButton);
+        battlePanel = new PanelBattle();
+        bestiaryPanel = new PanelBestiary();
+        inventoryPanel = new PanelInventory();
+        mapPanel = new PanelMap();
+        nameEntryPanel = new PanelNameEntry();
+        saveSlotsPanel = new PanelSaveSlots();
+        settingsInGamePanel = new PanelSettingsInGame();
+        shopHomePanel = new PanelShopHome();
+        shopBuyPanel = new PanelShopBuy();
+        shopSellPanel = new PanelShopSell();
+        titleScreenPanel = new PanelTitleScreen();
 
         // Organize panels in the gamePanel
         gamePanel.setLayout(cardLayout);
-        gamePanel.add(titleScreenPanel, "TITLE");
         gamePanel.add(mapPanel, "MAP");
+        gamePanel.add(nameEntryPanel, "NAME_ENTRY");
+        gamePanel.add(saveSlotsPanel, "SAVE_SLOTS");
+        gamePanel.add(settingsInGamePanel, "SETTINGS_IG");
+        gamePanel.add(shopHomePanel, "SHOP_HOME");
+        gamePanel.add(shopBuyPanel, "SHOP_BUY");
+        gamePanel.add(shopSellPanel, "SHOP_SELL");
+        gamePanel.add(titleScreenPanel, "TITLE");
+
         cardLayout.show(gamePanel, "TITLE"); // Show the title screen first
 
         // Add everything to gameFrame
@@ -114,7 +133,12 @@ public class GUI extends JFrame {
         settingsFrame.setVisible(true);
     }
 
-    // Submit button stores choices in GUIMain's net.spicefox.util.Settings field
+    //Switches visible panel
+    public static void changeActivePanel(String panelName){
+        cardLayout.show(gamePanel, panelName);
+    }
+
+    // Submit button stores choices in GUIMain's Settings field
     public void resolutionSubmit () {
         int[] newResolution = resolutions.get((String)settingsComboBox.getSelectedItem());
         Settings settings = new Settings(newResolution[0], newResolution[1]);
@@ -127,5 +151,4 @@ public class GUI extends JFrame {
         }
         settingsFrame.dispose(); // Murder the window when its deed is done
     }
-
 }

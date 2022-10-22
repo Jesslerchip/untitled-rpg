@@ -1,7 +1,12 @@
 package net.spicefox.gui;
 
-public class PanelMap {
-    public  PanelMap() {
+import javax.swing.*;
 
+public class PanelMap extends JPanel {
+    private JButton mapTitleButton;
+    public  PanelMap() {
+        mapTitleButton = new JButton("Title");
+        mapTitleButton.addActionListener(e->GUI.changeActivePanel("TITLE"));
+        this.add(mapTitleButton);
     }
 }
