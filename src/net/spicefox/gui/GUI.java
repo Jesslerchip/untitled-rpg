@@ -13,46 +13,32 @@ public class GUI extends JFrame {
     private JFrame gameFrame;
     private static JPanel gamePanel;
     private static CardLayout cardLayout;
-
-    private PanelBattle battlePanel;
-    private PanelBestiary bestiaryPanel;
-    private PanelInventory inventoryPanel;
-    private PanelMap mapPanel;
-    private PanelNameEntry nameEntryPanel;
-    private PanelSaveSlots saveSlotsPanel;
-    private PanelSettingsInGame settingsInGamePanel;
-    private PanelShopHome shopHomePanel;
-    private PanelShopBuy shopBuyPanel;
-    private PanelShopSell shopSellPanel;
-    private PanelTitleScreen titleScreenPanel;
-
     private JFrame settingsFrame;
     private JComboBox<String> settingsComboBox;
-    private JButton submitButton;
     private HashMap<String, int[]> resolutions;
-    // End of variables, objects, etc.
+
 
     // Constructor for the game window if net.spicefox.util.Settings object exists
     public GUI(Settings guiSettings) {
-        cardLayout = new CardLayout();
 
         // Frame and panel setup
+        PanelBattle battlePanel = new PanelBattle();
+        PanelBestiary bestiaryPanel = new PanelBestiary();
+        PanelInventory inventoryPanel = new PanelInventory();
+        PanelMap mapPanel = new PanelMap();
+        PanelNameEntry nameEntryPanel = new PanelNameEntry();
+        PanelSaveSlots saveSlotsPanel = new PanelSaveSlots();
+        PanelSettingsInGame settingsInGamePanel = new PanelSettingsInGame();
+        PanelShopHome shopHomePanel = new PanelShopHome();
+        PanelShopBuy shopBuyPanel = new PanelShopBuy();
+        PanelShopSell shopSellPanel = new PanelShopSell();
+        PanelTitleScreen titleScreenPanel = new PanelTitleScreen();
         gameFrame = new JFrame("Untitled RPG Game");
         gamePanel = new JPanel();
 
-        battlePanel = new PanelBattle();
-        bestiaryPanel = new PanelBestiary();
-        inventoryPanel = new PanelInventory();
-        mapPanel = new PanelMap();
-        nameEntryPanel = new PanelNameEntry();
-        saveSlotsPanel = new PanelSaveSlots();
-        settingsInGamePanel = new PanelSettingsInGame();
-        shopHomePanel = new PanelShopHome();
-        shopBuyPanel = new PanelShopBuy();
-        shopSellPanel = new PanelShopSell();
-        titleScreenPanel = new PanelTitleScreen();
 
         // Organize panels in the gamePanel
+        cardLayout = new CardLayout();
         gamePanel.setLayout(cardLayout);
         gamePanel.add(mapPanel, "MAP");
         gamePanel.add(nameEntryPanel, "NAME_ENTRY");
@@ -115,7 +101,7 @@ public class GUI extends JFrame {
         settingsComboBox = new JComboBox<>(resolutionStrings);
 
         // Submit button settings
-        submitButton = new JButton("Submit");
+        JButton submitButton = new JButton("Submit");
         submitButton.setSize(100, 20);
         submitButton.addActionListener(e->resolutionSubmit());
 
