@@ -9,8 +9,8 @@ public class Player extends Entity{
     private Shield shield;
     private Weapon weapon;
 
-    public Player() {
-
+    public Player(String name) {
+        this.setName(name);
     }
 
     public int getSpirit() {
