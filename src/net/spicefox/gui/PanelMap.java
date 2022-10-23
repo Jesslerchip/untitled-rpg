@@ -3,25 +3,28 @@ package net.spicefox.gui;
 import net.spicefox.util.Game;
 
 import javax.swing.*;
+import java.awt.event.ActionListener;
 
 public class PanelMap extends JPanel {
     private JButton mapTitleButton;
     private JButton mapBattleButton;
     private JLabel mapPlayerName;
     public  PanelMap(Game game) {
-        refreshMap(game);
         mapTitleButton = new JButton("Title");
-        mapTitleButton.addActionListener(e->GUI.changeActivePanel("TITLE"));
-        this.add(mapTitleButton);
         mapBattleButton = new JButton("Battle");
-        mapBattleButton.addActionListener(e->GUI.changeActivePanel("BATTLE"));
-        this.add(mapBattleButton);
-    }
+        mapPlayerName = new JLabel();
 
-    public void refreshMap(Game game) {
-        mapPlayerName = new JLabel(game.getPlayer().getName());
+        this.add(mapTitleButton);
+        this.add(mapBattleButton);
         this.add(mapPlayerName);
     }
 
+    public void addPanelListener(ActionListener listener) {
+        mapBattleButton.addActionListener(listener);
+        mapTitleButton.addActionListener(listener);
+    }
 
+    public void setMapPlayerName(String name) {
+        mapPlayerName.setText(name);
+    }
 }

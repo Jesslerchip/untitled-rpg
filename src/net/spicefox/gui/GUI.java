@@ -4,6 +4,7 @@ import net.spicefox.util.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -28,24 +29,24 @@ public class GUI extends JFrame {
     private PanelShopSell shopSellPanel;
     private PanelTitleScreen titleScreenPanel;
 
+    private Game game;
+
 
     // Constructor for the game window if net.spicefox.util.Settings object exists
     public GUI(Settings guiSettings) {
+        game = new Game();
+        //Game game1 = Serializer.dserGame("save/Game1.sav");
+        //Game game2 = Serializer.dserGame("save/Game2.sav");
+        //Game game3 = Serializer.dserGame("save/Game3.sav");
 
-        Game game = new Game();
-        Game game1 = Serializer.dserGame("save/Game1.sav");
-        Game game2 = Serializer.dserGame("save/Game2.sav");
-        Game game3 = Serializer.dserGame("save/Game3.sav");
-
-        // Frame and panel setup
+        //Set up GamePanel container
         gameFrame = new JFrame("Untitled RPG Game");
         gamePanel = new JPanel();
-        titleScreenPanel = new PanelTitleScreen(game, game1, game2, game3);
         cardLayout = new CardLayout();
         gamePanel.setLayout(cardLayout);
-        gamePanel.add(titleScreenPanel, "TITLE");
-        cardLayout.show(gamePanel, "TITLE"); // Show the title screen first
 
+        //Create instances of each game screen
+        titleScreenPanel = new PanelTitleScreen();
         nameEntryPanel = new PanelNameEntry(game);
         battlePanel = new PanelBattle();
         bestiaryPanel = new PanelBestiary();
@@ -57,6 +58,18 @@ public class GUI extends JFrame {
         shopBuyPanel = new PanelShopBuy();
         shopSellPanel = new PanelShopSell();
 
+        //Add GUI as an ActionListener to panels
+        titleScreenPanel.addPanelListener(e->titleScreenAction(e));
+        nameEntryPanel.addPanelListener(e->nameEntryAction(e));
+        battlePanel.addPanelListener(e->battleAction(e));
+        bestiaryPanel.addPanelListener(e->bestiaryAction(e));
+        inventoryPanel.addPanelListener(e->inventoryAction(e));
+        mapPanel.addPanelListener(e->mapAction(e));
+        saveSlotsPanel.addPanelListener(e->saveSlotsAction(e));
+        settingsInGamePanel.addPanelListener(e->settingsInGameAction(e));
+        shopHomePanel.addPanelListener(e->shopHomeAction(e));
+        shopBuyPanel.addPanelListener(e->shopBuyAction(e));
+        shopSellPanel.addPanelListener(e->shopSellAction(e));
 
         // Organize panels in the gamePanel
         gamePanel.add(battlePanel, "BATTLE");
@@ -69,8 +82,10 @@ public class GUI extends JFrame {
         gamePanel.add(shopHomePanel, "SHOP_HOME");
         gamePanel.add(shopBuyPanel, "SHOP_BUY");
         gamePanel.add(shopSellPanel, "SHOP_SELL");
+        gamePanel.add(titleScreenPanel, "TITLE");
 
         // Add everything to gameFrame
+        cardLayout.show(gamePanel, "TITLE");
         gameFrame.add(gamePanel);
         gameFrame.setResizable(false);
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -80,7 +95,6 @@ public class GUI extends JFrame {
 
     // gui.GUI for settings prompt if no settings exist
     public GUI () {
-
         // Frame settings
         settingsFrame = new JFrame("net.spicefox.util.Settings");
         settingsFrame.setSize(300, 85);
@@ -134,13 +148,6 @@ public class GUI extends JFrame {
         settingsFrame.setVisible(true);
     }
 
-    //Switches visible panel
-    public static void changeActivePanel(String panelName){ cardLayout.show(gamePanel, panelName); }
-
-    public PanelMap getMapPanel() {
-        return mapPanel;
-    }
-
     // Submit button stores choices in GUIMain's Settings field
     public void resolutionSubmit () {
         int[] newResolution = resolutions.get((String)settingsComboBox.getSelectedItem());
@@ -153,5 +160,69 @@ public class GUI extends JFrame {
             throw new RuntimeException(ex);
         }
         settingsFrame.dispose(); // Murder the window when its deed is done
+    }
+
+    //Responses to events in titleScreenPanel
+    private void titleScreenAction(ActionEvent e) {
+        if (e.getSource() == titleScreenPanel.getTitleNewGameButton()) {
+            cardLayout.show(gamePanel, "NAME_ENTRY");
+        }
+        if (e.getSource() == titleScreenPanel.getTitleLoadGameButton()) {
+            cardLayout.show(gamePanel, "SAVE_SLOTS");
+        }
+    }
+
+    //Responses to events in nameEntryPanel
+    private void nameEntryAction(ActionEvent e) {
+        if (e.getSource() == nameEntryPanel.getSubmitButton()) {
+            game.getPlayer().setName(nameEntryPanel.getNameEntryText());
+            mapPanel.setMapPlayerName(game.getPlayer().getName());
+            cardLayout.show(gamePanel, "MAP");
+        }
+    }
+
+    //Responses to events in battlePanel
+    private void battleAction(ActionEvent e) {
+
+    }
+
+    //Responses to events in bestiaryPanel
+    private void bestiaryAction(ActionEvent e) {
+
+    }
+
+    //Responses to events in inventoryPanel
+    private void inventoryAction(ActionEvent e) {
+
+    }
+
+    //Responses to events in mapPanel
+    private void mapAction(ActionEvent e) {
+
+    }
+
+    //Responses to events in saveSlotsPanel
+    private void saveSlotsAction(ActionEvent e) {
+
+    }
+
+    //Responses to events in settingsInGamePanel
+    private void settingsInGameAction(ActionEvent e) {
+
+    }
+
+    //Responses to events in shopHomePanel
+    private void shopHomeAction(ActionEvent e) {
+
+    }
+
+    //Responses to events in shopBuyPanel
+    private void shopBuyAction(ActionEvent e) {
+
+    }
+
+    //Responses to events in shopSellPanel
+    private void shopSellAction(ActionEvent e) {
+
     }
 }

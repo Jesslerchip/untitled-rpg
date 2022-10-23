@@ -1,6 +1,7 @@
 package net.spicefox.gui;
 
 import javax.swing.*;
+import java.awt.event.ActionListener;
 
 public class PanelBattle extends JPanel {
     JButton attackButton;
@@ -18,14 +19,16 @@ public class PanelBattle extends JPanel {
         potionButton.setFocusable(false);
         familiarButton.setFocusable(false);
 
-        //attackButton.addActionListener();
-        //shieldButton.addActionListener();
-        //potionButton.addActionListener();
-        //familiarButton.addActionListener();
-
         this.add(attackButton);
         this.add(shieldButton);
         this.add(potionButton);
         this.add(familiarButton);
+    }
+
+    public void addPanelListener(ActionListener listener) {
+        attackButton.addActionListener(listener);
+        shieldButton.addActionListener(listener);
+        potionButton.addActionListener(listener);
+        familiarButton.addActionListener(listener);
     }
 }

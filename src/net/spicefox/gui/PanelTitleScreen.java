@@ -1,22 +1,29 @@
 package net.spicefox.gui;
 
-import net.spicefox.util.Game;
-
 import javax.swing.*;
+import java.awt.event.ActionListener;
 
 public class PanelTitleScreen extends JPanel{
     private JButton titleNewGameButton;
-    public PanelTitleScreen(Game game, Game game1, Game game2, Game game3) {
+    private JButton titleLoadGameButton;
+    public PanelTitleScreen() {
         titleNewGameButton = new JButton("New Game");
-        titleNewGameButton.addActionListener(e->newGame(game));
+        titleLoadGameButton = new JButton("Load Game");
+
         this.add(titleNewGameButton);
-        titleNewGameButton = new JButton("Load Game");
-        titleNewGameButton.addActionListener(e->GUI.changeActivePanel("MAP"));
-        this.add(titleNewGameButton);
+        this.add(titleLoadGameButton);
     }
 
-    public void newGame(Game game) {
-        game = new Game();
-        GUI.changeActivePanel("NAME_ENTRY");
+    public void addPanelListener(ActionListener listener) {
+        titleNewGameButton.addActionListener(listener);
+        titleLoadGameButton.addActionListener(listener);
+    }
+
+    public JButton getTitleNewGameButton() {
+        return titleNewGameButton;
+    }
+
+    public JButton getTitleLoadGameButton() {
+        return titleLoadGameButton;
     }
 }
