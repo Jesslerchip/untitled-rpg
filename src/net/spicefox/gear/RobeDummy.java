@@ -4,9 +4,9 @@ public class RobeDummy extends Robe {
 
     public RobeDummy() {
 
-        setDurability(1);
-        setModHp(1);
-        setModMana(1);
+        setDurability(0);
+        setModHp(0);
+        setModMana(0);
 
     }
 

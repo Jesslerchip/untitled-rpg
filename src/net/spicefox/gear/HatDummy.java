@@ -4,9 +4,9 @@ public class HatDummy extends Hat {
 
     public HatDummy() {
 
-        setDurability(1);
-        setModSecondStrikeChance(1);
-        setModCriticalChance(1);
+        setDurability(0);
+        setModSecondStrikeChance(0);
+        setModCriticalChance(0);
 
     }
 

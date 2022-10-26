@@ -10,7 +10,9 @@ public class Player extends Entity{
 
     public Player(String name) {
         setMaxHp(1);
+        setHp(getMaxHp());
         setMaxMana(1);
+        setMana(getMaxMana());
         this.setName(name);
         this.setHat(new HatDummy());
         this.setRobe(new RobeDummy());

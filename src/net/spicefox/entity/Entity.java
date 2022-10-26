@@ -42,15 +42,11 @@ public abstract class Entity {
     double modDefense;
     private double modAccuracy;
     private double modCritChance;
-
     private double modSecondStrikeChance;
 
     // Gets added rather than multiplied
     private int modEvasion;
 
-
-
-    // TODO: add gear
 
     // GETTERS
     public String getName() { return name; }
@@ -197,12 +193,12 @@ public abstract class Entity {
         accuracy = (int)(65 + (focus * 5) * modAccuracy) + weapon.getModAccuracy();
     }
 
-    public void setSecondStrikeChance() {
-        secondStrikeChance = dexterity + hat.getModSecondStrikeChance() ;
-    }
-
     public void setCritChance() {
         critChance = focus + hat.getModCriticalChance();
+    }
+
+    public void setSecondStrikeChance() {
+        secondStrikeChance = dexterity + hat.getModSecondStrikeChance() ;
     }
 
     public void setEvasion() { evasion = boots.getModEvasion() + modEvasion; }
@@ -258,12 +254,19 @@ public abstract class Entity {
     public void setModDefense() { this.modDefense = 1; }
     public void setModAccuracy() { this.modAccuracy = 1; }
     public void setModCritChance() { this.modCritChance = 1; }
-
     public void setModSecondStrikeChance() { this.modSecondStrikeChance = 1; }
-
     public void setModEvasion() { this.modEvasion = 0; }
 
     public void setStats() {
+        setModMaxHp();
+        setModMaxMana();
+        setModSpeed();
+        setModAttack();
+        setModDefense();
+        setModAccuracy();
+        setModCritChance();
+        setModSecondStrikeChance();
+        setModEvasion();
         setMaxHp();
         setMaxMana();
         setSpeed();
@@ -271,6 +274,7 @@ public abstract class Entity {
         setDefense();
         setAccuracy();
         setCritChance();
+        setSecondStrikeChance();
         setEvasion();
     }
 

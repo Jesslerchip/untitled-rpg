@@ -9,7 +9,9 @@ public class Mob extends Entity{
     // TODO: Should take in location and pull mob type from the appropriate list
     public Mob() {
         setMaxHp(1);
+        setHp(getMaxHp());
         setMaxMana(1);
+        setMana(getMaxMana());
         this.setName("Dummy");
         this.setHat(new HatDummy());
         this.setRobe(new RobeDummy());

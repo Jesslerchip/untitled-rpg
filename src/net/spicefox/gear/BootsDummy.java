@@ -4,9 +4,9 @@ public class BootsDummy extends Boots {
 
     public BootsDummy() {
 
-        setDurability(1);
-        setModSpeed(1);
-        setModEvasion(1);
+        setDurability(0);
+        setModSpeed(0);
+        setModEvasion(0);
 
     }
 
