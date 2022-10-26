@@ -16,25 +16,26 @@ public class PanelBattle extends JPanel {
     private JLabel mobManaLabel;
 
     public PanelBattle() {
+
+        // Buttons
         attackButton = new JButton("Attack");
         shieldButton = new JButton("Shield");
         potionButton = new JButton("Potion");
         familiarButton = new JButton("Familiar");
-
-        playerHPLabel = new JLabel();
-        playerManaLabel = new JLabel();
-        mobHPLabel = new JLabel();
-        mobManaLabel = new JLabel();
-
         attackButton.setFocusable(false);
         shieldButton.setFocusable(false);
         potionButton.setFocusable(false);
         familiarButton.setFocusable(false);
-
         attackButton.setActionCommand("ATTACK");
         shieldButton.setActionCommand("SHIELD");
         potionButton.setActionCommand("POTION");
         familiarButton.setActionCommand("FAMILIAR_SUMMON");
+
+        // Labels
+        playerHPLabel = new JLabel();
+        playerManaLabel = new JLabel();
+        mobHPLabel = new JLabel();
+        mobManaLabel = new JLabel();
 
         this.add(attackButton);
         this.add(shieldButton);

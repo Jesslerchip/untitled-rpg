@@ -22,7 +22,7 @@ public class Battle {
         }
     }
 
-    public void takeTurn(String action) {
+    public void playerTurn(String action) {
         switch (action) {
             case "ATTACK":
                 turnAttack(player, mob);

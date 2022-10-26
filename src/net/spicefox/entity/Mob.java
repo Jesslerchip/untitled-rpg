@@ -22,7 +22,7 @@ public class Mob extends Entity{
         this.setMagick(1);
         this.setDexterity(1);
         this.setStrength(1);
-        this.setResistance(1);
+        this.setResistance(0);
         this.setFocus(1);
         this.setStats();
         this.setHp(getMaxHp());

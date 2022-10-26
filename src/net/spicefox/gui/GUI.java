@@ -188,19 +188,24 @@ public class GUI extends JFrame {
     private void battleAction(ActionEvent e) {
         boolean playerFirst = game.getBattle().isPlayerFirst();
         if (playerFirst) {
-            game.getBattle().takeTurn("ATTACK");
-            battlePanel.refreshStats(game.getPlayer(), game.getMob());
-            checkBattleStatus();
-            // Mob turn7
-            checkBattleStatus();
+            playerTurn(e);
+            mobTurn();
         }
         else {
-            // Mob turn
-            checkBattleStatus();
-            game.getBattle().takeTurn("ATTACK");
-            battlePanel.refreshStats(game.getPlayer(), game.getMob());
-            checkBattleStatus();
+            mobTurn();
+            playerTurn(e);
         }
+    }
+
+    public void playerTurn(ActionEvent e) {
+        game.getBattle().playerTurn(e.getActionCommand());
+        battlePanel.refreshStats(game.getPlayer(), game.getMob());
+        checkBattleStatus();
+    }
+
+    public void mobTurn() {
+        MobAI.getAction(game.getMob(), game.getPlayer());
+        checkBattleStatus();
     }
 
     // TODO: Add code for taking gear damage and losing bits
@@ -231,7 +236,7 @@ public class GUI extends JFrame {
             game.battleInit();
             battlePanel.refreshStats(game.getPlayer(), game.getMob());
             cardLayout.show(gamePanel, "BATTLE");
-        }7
+        }
         if (e.getSource() == mapPanel.getMapTitleButton()) {
             cardLayout.show(gamePanel, "TITLE");
         }
