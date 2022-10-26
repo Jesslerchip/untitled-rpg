@@ -2,8 +2,6 @@ package net.spicefox.util;
 
 import net.spicefox.gui.GUI;
 
-import java.io.IOException;
-
 public class Main {
 
     public static void main(String[] args) {

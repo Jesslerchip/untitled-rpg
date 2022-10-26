@@ -34,7 +34,6 @@ public class GUI extends JFrame {
 
     // Constructor for the game window if net.spicefox.util.Settings object exists
     public GUI(Settings guiSettings) {
-        game = new Game();
         //Game game1 = Serializer.dserGame("save/Game1.sav");
         //Game game2 = Serializer.dserGame("save/Game2.sav");
         //Game game3 = Serializer.dserGame("save/Game3.sav");
@@ -47,11 +46,11 @@ public class GUI extends JFrame {
 
         //Create instances of each game screen
         titleScreenPanel = new PanelTitleScreen();
-        nameEntryPanel = new PanelNameEntry(game);
+        nameEntryPanel = new PanelNameEntry();
         battlePanel = new PanelBattle();
         bestiaryPanel = new PanelBestiary();
         inventoryPanel = new PanelInventory();
-        mapPanel = new PanelMap(game);
+        mapPanel = new PanelMap();
         saveSlotsPanel = new PanelSaveSlots();
         settingsInGamePanel = new PanelSettingsInGame();
         shopHomePanel = new PanelShopHome();
@@ -165,6 +164,7 @@ public class GUI extends JFrame {
     //Responses to events in titleScreenPanel
     private void titleScreenAction(ActionEvent e) {
         if (e.getSource() == titleScreenPanel.getTitleNewGameButton()) {
+            game = new Game();
             cardLayout.show(gamePanel, "NAME_ENTRY");
         }
         if (e.getSource() == titleScreenPanel.getTitleLoadGameButton()) {
@@ -183,7 +183,8 @@ public class GUI extends JFrame {
 
     //Responses to events in battlePanel
     private void battleAction(ActionEvent e) {
-
+        if (e.getSource() == battlePanel.getAttackButton()) {
+        }
     }
 
     //Responses to events in bestiaryPanel
@@ -198,7 +199,9 @@ public class GUI extends JFrame {
 
     //Responses to events in mapPanel
     private void mapAction(ActionEvent e) {
-
+        if (e.getSource() == mapPanel.getMapBattleButton()) {
+            cardLayout.show(gamePanel, "BATTLE");
+        }
     }
 
     //Responses to events in saveSlotsPanel

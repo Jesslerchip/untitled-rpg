@@ -9,7 +9,7 @@ public class PanelMap extends JPanel {
     private JButton mapTitleButton;
     private JButton mapBattleButton;
     private JLabel mapPlayerName;
-    public  PanelMap(Game game) {
+    public  PanelMap() {
         mapTitleButton = new JButton("Title");
         mapBattleButton = new JButton("Battle");
         mapPlayerName = new JLabel();
@@ -27,4 +27,9 @@ public class PanelMap extends JPanel {
     public void setMapPlayerName(String name) {
         mapPlayerName.setText(name);
     }
+
+    public JButton getMapBattleButton() {
+        return mapBattleButton;
+    }
+
 }

@@ -1,18 +1,70 @@
 package net.spicefox.entity;
 
+import net.spicefox.familiar.Familiar;
+import net.spicefox.gear.*;
+
 public abstract class Entity {
     private String name;
-    private int hp, mana, speed, attack, defense;
-    private int vitality, magick, dexterity, strength, resistance, focus;
-    private double critChance;
+
+    // Stats
+    int maxHp;
+    int hp;
+    int maxMana;
+    int mana;
+    int speed;
+    int attack;
+    int defense;
+    private int accuracy;
+    private int critChance;
+    private int secondStrikeChance;
+    private int evasion;
+
+    // Skills
+    int vitality;
+    int magick;
+    int dexterity;
+    int strength;
+    int resistance;
+    private int focus;
+
+    // Gear
+    Boots boots;
+    Robe robe;
+    private Hat hat;
+    Shield shield;
+    Weapon weapon;
+
+    // Modifiers
+    double modMaxHp;
+    double modMaxMana;
+    double modSpeed;
+    double modAttack;
+    double modDefense;
+    private double modAccuracy;
+    private double modCritChance;
+
+    private double modSecondStrikeChance;
+
+    // Gets added rather than multiplied
+    private int modEvasion;
+
+
 
     // TODO: add gear
 
     // GETTERS
     public String getName() { return name; }
 
+    public int getMaxHp() {
+        return maxHp;
+    }
+
     public int getHp() {
         return hp;
+    }
+
+    public int getMaxMana() {
+        return maxMana;
     }
 
     public int getMana() {
@@ -30,6 +82,18 @@ public abstract class Entity {
     public int getDefense() {
         return defense;
     }
+
+    public int getAccuracy() {
+        return accuracy;
+    }
+
+    public int getCritChance() {
+        return critChance;
+    }
+
+    public int getSecondStrikeChance() { return secondStrikeChance; }
+
+    public int getEvasion() { return evasion; }
 
     public int getVitality() {
         return vitality;
@@ -55,9 +119,33 @@ public abstract class Entity {
         return focus;
     }
 
-    public double getCritChance() {
-        return critChance;
+    public Boots getBoots() { return this.boots; }
+
+    public Robe getRobe() {
+        return this.robe;
     }
+
+    public Hat getHat() { return this.hat; }
+
+    public Shield getShield() {
+        return shield;
+    }
+
+    public Weapon getWeapon() {
+        return weapon;
+    }
+
+    public double getModMaxHp() { return modMaxHp; }
+    public double getModMaxMana() { return modMaxMana; }
+    public double getModSpeed() { return modSpeed; }
+    public double getModAttack() { return modAttack; }
+    public double getModDefense() { return modDefense; }
+    public double getModAccuracy() { return modAccuracy; }
+    public double getModCritChance() { return modCritChance; }
+
+    public double getModSecondStrikeChance() { return modSecondStrikeChance; }
+
+    public double getModEvasion() { return modEvasion; }
 
 
     // SETTERS
@@ -65,25 +153,59 @@ public abstract class Entity {
         this.name = name;
     }
 
+    public void setMaxHp() {
+        double hpPercent = hp / maxHp;
+        maxHp = (int)(90 + (vitality * 10) * modMaxHp) + robe.getModHp();
+        int newHp = (int) (hpPercent * maxHp);
+        setHp(newHp);
+    }
+
+    public void setMaxHp(int maxHp) {
+        this.maxHp = maxHp;
+    }
+
     public void setHp(int hp) {
         this.hp = hp;
     }
 
-    public void setMana(int mana) {
-        this.mana = mana;
+    public void setMaxMana() {
+        double manaPercent = mana / maxMana;
+        maxMana = (int)(90 + (magick * 10) * modMaxMana) + robe.getModMana();
+        int newMana = (int) (manaPercent * maxMana);
+        setMana(newMana);
     }
 
-    public void setSpeed(int speed) {
-        this.speed = speed;
+    public void setMaxMana(int maxMana) {
+        this.maxMana = maxMana;
     }
 
-    public void setAttack(int attack) {
-        this.attack = attack;
+    public void setMana(int mana) { this.mana = mana; }
+
+    public void setSpeed() {
+        speed = (int)(90 + (dexterity * 10) * modSpeed) + boots.getModSpeed();
     }
 
-    public void setDefense(int defense) {
-        this.defense = defense;
+    public void setAttack() {
+        attack = (int)(90 + (strength * 10) * modAttack) + weapon.getModAttack();
     }
+
+    public void setDefense() {
+        defense = (int)(90 + (resistance * 10) * modDefense) + shield.getModDefense();
+    }
+
+    public void setAccuracy() {
+        accuracy = (int)(65 + (focus * 5) * modAccuracy) + weapon.getModAccuracy();
+    }
+
+    public void setSecondStrikeChance() {
+        secondStrikeChance = dexterity + hat.getModSecondStrikeChance() ;
+    }
+
+    public void setCritChance() {
+        critChance = focus + hat.getModCriticalChance();
+    }
+
+    public void setEvasion() { evasion = boots.getModEvasion() + modEvasion; }
 
     public void setVitality(int vitality) {
         this.vitality = vitality;
@@ -109,7 +231,53 @@ public abstract class Entity {
         this.focus = focus;
     }
 
-    public void setCritChance(double critChance) {
-        this.critChance = critChance;
+    public void setHat(Hat hat) {
+        this.hat = hat;
     }
+
+    public void setRobe(Robe robe) {
+        this.robe = robe;
+    }
+
+    public void setBoots(Boots boots) {
+        this.boots = boots;
+    }
+
+    public void setShield(Shield shield) {
+        this.shield = shield;
+    }
+
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
+    }
+
+    public void setModMaxHp() { this.modMaxHp = 1; }
+    public void setModMaxMana() { this.modMaxMana = 1; }
+    public void setModSpeed() { this.modSpeed = 1; }
+    public void setModAttack() { this.modAttack = 1; }
+    public void setModDefense() { this.modDefense = 1; }
+    public void setModAccuracy() { this.modAccuracy = 1; }
+    public void setModCritChance() { this.modCritChance = 1; }
+
+    public void setModSecondStrikeChance() { this.modSecondStrikeChance = 1; }
+
+    public void setModEvasion() { this.modEvasion = 0; }
+
+    public void setStats() {
+        setMaxHp();
+        setMaxMana();
+        setSpeed();
+        setAttack();
+        setDefense();
+        setAccuracy();
+        setCritChance();
+        setEvasion();
+    }
+
+    // MISC
+    public void changeHp(int change) {
+        this.hp += change;
+    }
+    public void changeMana(int change) { this.mana += change; }
+
 }

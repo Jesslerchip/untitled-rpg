@@ -31,4 +31,9 @@ public class PanelBattle extends JPanel {
         potionButton.addActionListener(listener);
         familiarButton.addActionListener(listener);
     }
+
+    public JButton getAttackButton() {
+        return attackButton;
+    }
+
 }

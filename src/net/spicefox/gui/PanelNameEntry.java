@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 public class PanelNameEntry extends JPanel {
     private JTextField nameEntryField;
     private JButton submitButton;
-    public PanelNameEntry(Game game) {
+    public PanelNameEntry() {
         nameEntryField = new JTextField();
         nameEntryField.setColumns(10);
         submitButton = new JButton("Submit");
