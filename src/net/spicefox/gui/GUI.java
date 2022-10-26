@@ -30,13 +30,15 @@ public class GUI extends JFrame {
     private PanelTitleScreen titleScreenPanel;
 
     private Game game;
-
+    private Game gameSave1;
+    private Game gameSave2;
+    private Game gameSave3;
 
     // Constructor for the game window if net.spicefox.util.Settings object exists
     public GUI(Settings guiSettings) {
-        //Game game1 = Serializer.dserGame("save/Game1.sav");
-        //Game game2 = Serializer.dserGame("save/Game2.sav");
-        //Game game3 = Serializer.dserGame("save/Game3.sav");
+        Game gameSave1 = Serializer.dserGame("save/Game1.sav");
+        Game gameSave2 = Serializer.dserGame("save/Game2.sav");
+        Game gameSave3 = Serializer.dserGame("save/Game3.sav");
 
         //Set up GamePanel container
         gameFrame = new JFrame("Untitled RPG Game");
@@ -168,6 +170,7 @@ public class GUI extends JFrame {
             cardLayout.show(gamePanel, "NAME_ENTRY");
         }
         if (e.getSource() == titleScreenPanel.getTitleLoadGameButton()) {
+            saveSlotsPanel.setGameSlots(gameSave1, gameSave2, gameSave3);
             cardLayout.show(gamePanel, "SAVE_SLOTS");
         }
     }
@@ -219,7 +222,9 @@ public class GUI extends JFrame {
 
     //Responses to events in saveSlotsPanel
     private void saveSlotsAction(ActionEvent e) {
-
+        if (e.getSource() == saveSlotsPanel.getSaveSlotsBackButton()) {
+            cardLayout.show(gamePanel, "TITLE");
+        }
     }
 
     //Responses to events in settingsInGamePanel
