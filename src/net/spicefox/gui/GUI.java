@@ -202,6 +202,12 @@ public class GUI extends JFrame {
         if (e.getSource() == mapPanel.getMapBattleButton()) {
             cardLayout.show(gamePanel, "BATTLE");
         }
+        if (e.getSource() == mapPanel.getMapTitleButton()) {
+            cardLayout.show(gamePanel, "TITLE");
+        }
+        if (e.getSource() == mapPanel.getMapShopButton()) {
+            cardLayout.show(gamePanel, "SHOP_HOME");
+        }
     }
 
     //Responses to events in saveSlotsPanel
@@ -216,16 +222,28 @@ public class GUI extends JFrame {
 
     //Responses to events in shopHomePanel
     private void shopHomeAction(ActionEvent e) {
-
+        if (e.getSource() == shopHomePanel.getShopBackButton()) {
+            cardLayout.show(gamePanel, "MAP");
+        }
+        if (e.getSource() == shopHomePanel.getShopBuyButton()) {
+            cardLayout.show(gamePanel, "SHOP_BUY");
+        }
+        if (e.getSource() == shopHomePanel.getShopSellButton()) {
+            cardLayout.show(gamePanel, "SHOP_SELL");
+        }
     }
 
     //Responses to events in shopBuyPanel
     private void shopBuyAction(ActionEvent e) {
-
+        if (e.getSource() == shopBuyPanel.getBuyBackButton()) {
+            cardLayout.show(gamePanel, "SHOP_HOME");
+        }
     }
 
     //Responses to events in shopSellPanel
     private void shopSellAction(ActionEvent e) {
-
+        if (e.getSource() == shopSellPanel.getSellBackButton()) {
+            cardLayout.show(gamePanel, "SHOP_HOME");
+        }
     }
 }
