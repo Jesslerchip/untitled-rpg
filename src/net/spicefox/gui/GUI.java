@@ -186,13 +186,23 @@ public class GUI extends JFrame {
 
     //Responses to events in battlePanel
     private void battleAction(ActionEvent e) {
+        boolean turnOrder = Battle.getTurnOrder(game.getPlayer(), game.getMob());
         if (e.getSource() == battlePanel.getAttackButton()) {
-            Battle.playerTurnAttack(game.getPlayer(), game.getMob()); //No mob for now: insert dummy here
+            Battle.takeTurn(game.getPlayer(), game.getMob(), "ATTACK");
             battlePanel.refreshStats(game.getPlayer(), game.getMob());
-            if (game.getPlayer().getHp() <= 0 || game.getMob().getHp() <= 0) {
-                cardLayout.show(gamePanel, "MAP");
-                game.getPlayer().setHp(game.getPlayer().getMaxHp()); //NOT PERMANENT? Resets player at map
-            }
+        }
+        checkBattleStatus();
+    }
+
+    // TODO: Add code for taking gear damage and losing bits
+    private void checkBattleStatus() {
+        if (game.getPlayer().getHp() <= 0) {
+            cardLayout.show(gamePanel, "MAP");
+            game.getPlayer().setHp(game.getPlayer().getMaxHp()); //NOT PERMANENT? Resets player at map
+        }
+        if (game.getMob().getHp() <= 0) {
+            cardLayout.show(gamePanel, "MAP");
+            game.getPlayer().setHp(game.getPlayer().getMaxHp()); //NOT PERMANENT? Resets player at map
         }
     }
 
