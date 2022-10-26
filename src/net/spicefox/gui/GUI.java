@@ -184,8 +184,12 @@ public class GUI extends JFrame {
     //Responses to events in battlePanel
     private void battleAction(ActionEvent e) {
         if (e.getSource() == battlePanel.getAttackButton()) {
-            Battle.playerTurnAttack(game.getPlayer(), null);
+            Battle.playerTurnAttack(game.getPlayer(), null); //No mob for now: insert dummy here
             battlePanel.refreshStats(game.getPlayer());
+            if (game.getPlayer().getHp() == 0) {
+                cardLayout.show(gamePanel, "MAP");
+                game.getPlayer().setHp(game.getPlayer().getMaxHp()); //NOT PERMANENT? Resets player at map
+            }
         }
     }
 
