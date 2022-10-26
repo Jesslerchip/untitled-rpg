@@ -10,6 +10,9 @@ public class PanelTitleScreen extends JPanel{
         titleNewGameButton = new JButton("New Game");
         titleLoadGameButton = new JButton("Load Game");
 
+        titleNewGameButton.setFocusable(false);
+        titleLoadGameButton.setFocusable(false);
+
         this.add(titleNewGameButton);
         this.add(titleLoadGameButton);
     }

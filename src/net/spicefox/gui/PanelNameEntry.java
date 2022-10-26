@@ -14,6 +14,8 @@ public class PanelNameEntry extends JPanel {
         nameEntryField.setColumns(10);
         submitButton = new JButton("Submit");
 
+        submitButton.setFocusable(false);
+
         this.add(nameEntryField);
         this.add(submitButton);
     }
