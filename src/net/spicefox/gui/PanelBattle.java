@@ -12,6 +12,9 @@ public class PanelBattle extends JPanel {
 
     private JLabel playerHPLabel;
     private JLabel playerManaLabel;
+    private JLabel mobHPLabel;
+    private JLabel mobManaLabel;
+
     public PanelBattle() {
         attackButton = new JButton("Attack");
         shieldButton = new JButton("Shield");
@@ -20,6 +23,8 @@ public class PanelBattle extends JPanel {
 
         playerHPLabel = new JLabel();
         playerManaLabel = new JLabel();
+        mobHPLabel = new JLabel();
+        mobManaLabel = new JLabel();
 
         attackButton.setFocusable(false);
         shieldButton.setFocusable(false);
@@ -32,6 +37,8 @@ public class PanelBattle extends JPanel {
         this.add(familiarButton);
         this.add(playerHPLabel);
         this.add(playerManaLabel);
+        this.add(mobHPLabel);
+        this.add(mobManaLabel);
     }
 
     public void addPanelListener(ActionListener listener) {
@@ -41,9 +48,11 @@ public class PanelBattle extends JPanel {
         familiarButton.addActionListener(listener);
     }
 
-    public void refreshStats(Player player) {
-        playerHPLabel.setText("HP: " + player.getHp());
-        playerManaLabel.setText("Mana: " + player.getMana());
+    public void refreshStats(Player player, Mob mob) {
+        playerHPLabel.setText(player.getName() + " HP: " + player.getHp());
+        playerManaLabel.setText(player.getName() + " Mana: " + player.getMana());
+        mobHPLabel.setText(mob.getName() + " HP: " + mob.getHp());
+        mobManaLabel.setText(mob.getName() + " Mana: " + mob.getMana());
     }
 
     public JButton getAttackButton() {
