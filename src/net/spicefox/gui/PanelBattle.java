@@ -31,6 +31,11 @@ public class PanelBattle extends JPanel {
         potionButton.setFocusable(false);
         familiarButton.setFocusable(false);
 
+        attackButton.setActionCommand("ATTACK");
+        shieldButton.setActionCommand("SHIELD");
+        potionButton.setActionCommand("POTION");
+        familiarButton.setActionCommand("FAMILIAR_SUMMON");
+
         this.add(attackButton);
         this.add(shieldButton);
         this.add(potionButton);
