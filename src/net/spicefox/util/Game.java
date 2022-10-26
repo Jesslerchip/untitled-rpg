@@ -6,6 +6,8 @@ import java.io.Serializable;
 public class Game implements Serializable {
     private Player player;
     private Mob mob;
+    private Battle battle;
+
     public Game () {
         player = new Player("Dummy");
     }
@@ -22,7 +24,19 @@ public class Game implements Serializable {
         return mob;
     }
 
+    public Battle getBattle() { return battle; }
+
     public void setPlayer(Player player) {
         this.player = player;
     }
+
+    public void setBattle() {
+
+    }
+
+    public void battleInit() {
+        genMob();
+        battle = new Battle(player, mob);
+    }
+
 }

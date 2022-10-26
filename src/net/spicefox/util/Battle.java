@@ -5,7 +5,15 @@ import net.spicefox.entity.*;
 public class Battle {
     //Obviously will not function like this in final version; this is for testing purposes
 
-    public static boolean getTurnOrder(Player player, Mob mob) {
+    private Player player;
+    private Mob mob;
+
+    public Battle(Player player, Mob mob) {
+        this.player = player;
+        this.mob = mob;
+    }
+
+    public boolean isPlayerFirst() {
         if (player.getSpeed() > mob.getSpeed()) {
             return true;
         }
@@ -14,10 +22,10 @@ public class Battle {
         }
     }
 
-    public static void takeTurn(Entity attacker, Entity defender, String action) {
+    public void takeTurn(String action) {
         switch (action) {
             case "ATTACK":
-                turnAttack(attacker, defender);
+                turnAttack(player, mob);
                 break;
             default:
                 break;

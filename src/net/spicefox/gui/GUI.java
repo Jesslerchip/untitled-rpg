@@ -186,12 +186,21 @@ public class GUI extends JFrame {
 
     //Responses to events in battlePanel
     private void battleAction(ActionEvent e) {
-        boolean turnOrder = Battle.getTurnOrder(game.getPlayer(), game.getMob());
-        if (e.getSource() == battlePanel.getAttackButton()) {
-            Battle.takeTurn(game.getPlayer(), game.getMob(), "ATTACK");
+        boolean playerFirst = game.getBattle().isPlayerFirst();
+        if (playerFirst) {
+            game.getBattle().takeTurn("ATTACK");
             battlePanel.refreshStats(game.getPlayer(), game.getMob());
+            checkBattleStatus();
+            // Mob turn7
+            checkBattleStatus();
         }
-        checkBattleStatus();
+        else {
+            // Mob turn
+            checkBattleStatus();
+            game.getBattle().takeTurn("ATTACK");
+            battlePanel.refreshStats(game.getPlayer(), game.getMob());
+            checkBattleStatus();
+        }
     }
 
     // TODO: Add code for taking gear damage and losing bits
@@ -219,10 +228,10 @@ public class GUI extends JFrame {
     //Responses to events in mapPanel
     private void mapAction(ActionEvent e) {
         if (e.getSource() == mapPanel.getMapBattleButton()) {
-            game.genMob();
+            game.battleInit();
             battlePanel.refreshStats(game.getPlayer(), game.getMob());
             cardLayout.show(gamePanel, "BATTLE");
-        }
+        }7
         if (e.getSource() == mapPanel.getMapTitleButton()) {
             cardLayout.show(gamePanel, "TITLE");
         }
@@ -243,7 +252,8 @@ public class GUI extends JFrame {
 
     }
 
-    //Responses to events in shopHomePanel
+    //Resp
+    // onses to events in shopHomePanel
     private void shopHomeAction(ActionEvent e) {
         if (e.getSource() == shopHomePanel.getShopBackButton()) {
             cardLayout.show(gamePanel, "MAP");
