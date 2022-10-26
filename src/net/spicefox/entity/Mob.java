@@ -6,6 +6,27 @@ import java.util.ArrayList;
 
 public class Mob extends Entity{
 
+    // TODO: Should take in location and pull mob type from the appropriate list
+    public Mob() {
+        setMaxHp(1);
+        setMaxMana(1);
+        this.setName("Dummy");
+        this.setHat(new HatDummy());
+        this.setRobe(new RobeDummy());
+        this.setBoots(new BootsDummy());
+        this.setShield(new ShieldDummy());
+        this.setWeapon(new WeaponDummy());
+        this.setVitality(1);
+        this.setMagick(1);
+        this.setDexterity(1);
+        this.setStrength(1);
+        this.setResistance(1);
+        this.setFocus(1);
+        this.setStats();
+        this.setHp(getMaxHp());
+        this.setMana(getMaxMana());
+    }
+
     private double dropChanceFamiliar;
     private int dropBits;
     private int dropXP;

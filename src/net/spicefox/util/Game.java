@@ -10,6 +10,10 @@ public class Game implements Serializable {
         player = new Player("Dummy");
     }
 
+    public void genMob() {
+        mob = new Mob();
+    }
+
     public Player getPlayer() {
         return player;
     }

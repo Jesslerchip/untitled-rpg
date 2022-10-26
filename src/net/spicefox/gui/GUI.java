@@ -184,6 +184,7 @@ public class GUI extends JFrame {
     //Responses to events in battlePanel
     private void battleAction(ActionEvent e) {
         if (e.getSource() == battlePanel.getAttackButton()) {
+
         }
     }
 
