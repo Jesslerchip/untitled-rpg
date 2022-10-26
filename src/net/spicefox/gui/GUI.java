@@ -184,6 +184,8 @@ public class GUI extends JFrame {
     //Responses to events in battlePanel
     private void battleAction(ActionEvent e) {
         if (e.getSource() == battlePanel.getAttackButton()) {
+            Battle.playerTurnAttack(game.getPlayer(), null);
+            battlePanel.refreshStats(game.getPlayer());
         }
     }
 
@@ -200,6 +202,7 @@ public class GUI extends JFrame {
     //Responses to events in mapPanel
     private void mapAction(ActionEvent e) {
         if (e.getSource() == mapPanel.getMapBattleButton()) {
+            battlePanel.refreshStats(game.getPlayer());
             cardLayout.show(gamePanel, "BATTLE");
         }
         if (e.getSource() == mapPanel.getMapTitleButton()) {
