@@ -27,22 +27,38 @@ public class Battle {
             case "ATTACK":
                 turnAttack(player, mob);
                 break;
+            case "WARD":
+                turnWard(player);
             default:
                 break;
         }
     }
 
     public static void turnAttack(Entity attacker, Entity defender) {
+        int damage = (int) (attacker.getAttack() * 1.1);
 
-        int damage = (int) (attacker.getAttack() * 1.1 - defender.getDefense());
-        if (damage < 1) {
-            damage = 1;
+        if (defender.getWardHp() > 0) {
+            int wardHp = defender.getWardHp();
+            defender.setWardHp(wardHp - damage);
+            damage -= wardHp;
         }
-        // TODO: Make method to change all gear durabilities on use
+
+        if (damage > 0) {
+            damage -= defender.getDefense();
+            if (damage < 1) {
+                damage = 1;
+            }
+            defender.setHp(defender.getHp() - damage);
+        }
+
         damageGear(attacker, defender, damage);
     }
 
-    public static void turnShield(Entity attacker, Entity defender) {
+    public static void turnWard(Entity attacker) {
+
+        attacker.setWardMaxHP();
+        attacker.setMana(attacker.getMana() - attacker.getShield().getWardCost());
+        System.out.println(attacker.getName() + " cast a Ward!");
 
     }
 
@@ -55,10 +71,10 @@ public class Battle {
     }
 
     private static void damageGear(Entity attacker, Entity defender, int damage) {
-        defender.setHp(defender.getHp() - damage);
         defender.getBoots().setDurability(defender.getBoots().getDurability() - damage);
         defender.getRobe().setDurability(defender.getRobe().getDurability() - damage);
         defender.getHat().setDurability(defender.getHat().getDurability() - damage);
+        defender.getShield().setDurability(defender.getShield().getDurability() - damage);
         attacker.getWeapon().setDurability(attacker.getWeapon().getDurability() - damage);
     }
 

@@ -6,7 +6,7 @@ import net.spicefox.entity.*;
 
 public class PanelBattle extends JPanel {
     private JButton attackButton;
-    private JButton shieldButton;
+    private JButton wardButton;
     private JButton potionButton;
     private JButton familiarButton;
 
@@ -19,15 +19,15 @@ public class PanelBattle extends JPanel {
 
         // Buttons
         attackButton = new JButton("Attack");
-        shieldButton = new JButton("Shield");
+        wardButton = new JButton("Ward");
         potionButton = new JButton("Potion");
         familiarButton = new JButton("Familiar");
         attackButton.setFocusable(false);
-        shieldButton.setFocusable(false);
+        wardButton.setFocusable(false);
         potionButton.setFocusable(false);
         familiarButton.setFocusable(false);
         attackButton.setActionCommand("ATTACK");
-        shieldButton.setActionCommand("SHIELD");
+        wardButton.setActionCommand("WARD");
         potionButton.setActionCommand("POTION");
         familiarButton.setActionCommand("FAMILIAR_SUMMON");
 
@@ -38,7 +38,7 @@ public class PanelBattle extends JPanel {
         mobManaLabel = new JLabel();
 
         this.add(attackButton);
-        this.add(shieldButton);
+        this.add(wardButton);
         this.add(potionButton);
         this.add(familiarButton);
         this.add(playerHPLabel);
@@ -49,7 +49,7 @@ public class PanelBattle extends JPanel {
 
     public void addPanelListener(ActionListener listener) {
         attackButton.addActionListener(listener);
-        shieldButton.addActionListener(listener);
+        wardButton.addActionListener(listener);
         potionButton.addActionListener(listener);
         familiarButton.addActionListener(listener);
     }

@@ -187,7 +187,12 @@ public class GUI extends JFrame {
     //Responses to events in battlePanel
     private void battleAction(ActionEvent e) {
         boolean playerFirst = game.getBattle().isPlayerFirst();
-        if (playerFirst) {
+
+        if (e.getActionCommand().equals("WARD") && game.getPlayer().getMana() <
+                game.getPlayer().getShield().getWardCost()) {
+            System.out.println("Not enough mana to cast a Ward!");
+        }
+        else if (playerFirst) {
             playerTurn(e);
             mobTurn();
         }

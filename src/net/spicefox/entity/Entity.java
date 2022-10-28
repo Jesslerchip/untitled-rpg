@@ -34,6 +34,9 @@ public abstract class Entity {
     Shield shield;
     Weapon weapon;
 
+    int wardMaxHp;
+    int wardHp;
+
     // Modifiers
     double modMaxHp;
     double modMaxMana;
@@ -130,6 +133,9 @@ public abstract class Entity {
     public Weapon getWeapon() {
         return weapon;
     }
+
+    public int getWardMaxHp() { return wardMaxHp; }
+    public int getWardHp() { return wardHp; }
 
     public double getModMaxHp() { return modMaxHp; }
     public double getModMaxMana() { return modMaxMana; }
@@ -246,7 +252,11 @@ public abstract class Entity {
     public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
     }
-
+    public void setWardMaxHP() {
+        wardMaxHp = defense + shield.getModWardMaxHp();
+        wardHp = wardMaxHp;
+    }
+    public void setWardHp(int wardHp) { this.wardHp = wardHp; }
     public void setModMaxHp() { this.modMaxHp = 1; }
     public void setModMaxMana() { this.modMaxMana = 1; }
     public void setModSpeed() { this.modSpeed = 1; }
