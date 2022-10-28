@@ -22,13 +22,13 @@ public class Battle {
         }
     }
 
-    public void playerTurn(String action) {
+    public void takeTurn(Entity attacker, Entity defender, String action) {
         switch (action) {
             case "ATTACK":
-                turnAttack(player, mob);
+                turnAttack(attacker, defender);
                 break;
             case "WARD":
-                turnWard(player);
+                turnWard(attacker);
             default:
                 break;
         }
@@ -40,6 +40,10 @@ public class Battle {
         if (defender.getWardHp() > 0) {
             int wardHp = defender.getWardHp();
             defender.setWardHp(wardHp - damage);
+            if (defender.getWardHp() < 0) {
+                defender.setWardHp(0);
+                System.out.println(defender.getName() + "'s Ward has dissipated!");
+            }
             damage -= wardHp;
         }
 

@@ -6,7 +6,7 @@ public class ShieldDummy extends Shield{
 
         setDurability(0);
         setModDefense(0);
-        setModWardMaxHp(0);
+        setModWardMaxHp(15);
         setWardCost(15);
 
     }

@@ -203,13 +203,14 @@ public class GUI extends JFrame {
     }
 
     public void playerTurn(ActionEvent e) {
-        game.getBattle().playerTurn(e.getActionCommand());
+        game.getBattle().takeTurn(game.getPlayer(), game.getMob(), e.getActionCommand());
         battlePanel.refreshStats(game.getPlayer(), game.getMob());
         checkBattleStatus();
     }
 
     public void mobTurn() {
-        MobAI.getAction(game.getMob(), game.getPlayer());
+        String action = MobAI.getAction(game.getMob(), game.getPlayer());
+        game.getBattle().takeTurn(game.getMob(), game.getPlayer(), action);
         checkBattleStatus();
     }
 
