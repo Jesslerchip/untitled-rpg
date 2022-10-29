@@ -2,6 +2,7 @@ package net.spicefox.entity;
 
 import net.spicefox.familiar.Familiar;
 import net.spicefox.gear.*;
+import net.spicefox.util.Inventory;
 
 public abstract class Entity {
     private String name;
@@ -50,6 +51,7 @@ public abstract class Entity {
     // Gets added rather than multiplied
     private int modEvasion;
 
+    Inventory inventory;
 
     // GETTERS
     public String getName() { return name; }
@@ -294,4 +296,15 @@ public abstract class Entity {
     }
     public void changeMana(int change) { this.mana += change; }
 
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void addToInventory(Object o) {
+        inventory.addItem(o);
+    }
+
+    public void removeFromInventory(Object o) {
+        inventory.removeItem(o);
+    }
 }

@@ -29,6 +29,10 @@ public class Battle {
                 break;
             case "WARD":
                 turnWard(attacker);
+                break;
+            case "POTION":
+                turnPotion(attacker);
+                break;
             default:
                 break;
         }
@@ -66,8 +70,9 @@ public class Battle {
 
     }
 
-    public static void turnPotion(Entity attacker, Entity defender) {
-
+    public static void turnPotion(Entity attacker) {
+        attacker.removeFromInventory("Health Potion");
+        attacker.setHp(attacker.getHp() + 25); // TODO: Can't get heal from potion object if not stored as object?
     }
 
     public static void turnFamiliar(Entity attacker, Entity defender) {

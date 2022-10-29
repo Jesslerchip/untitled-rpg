@@ -1,6 +1,8 @@
 package net.spicefox.gui;
 
 import net.spicefox.util.*;
+import net.spicefox.gear.*;
+import net.spicefox.potions.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,8 +36,10 @@ public class GUI extends JFrame {
     private Game gameSave2;
     private Game gameSave3;
 
+    private Potion testPotion; // TODO
     // Constructor for the game window if net.spicefox.util.Settings object exists
     public GUI(Settings guiSettings) {
+        testPotion = new Potion(); // TODO
         Game gameSave1 = Serializer.dserGame("save/Game1.sav");
         Game gameSave2 = Serializer.dserGame("save/Game2.sav");
         Game gameSave3 = Serializer.dserGame("save/Game3.sav");
@@ -167,6 +171,7 @@ public class GUI extends JFrame {
     private void titleScreenAction(ActionEvent e) {
         if (e.getSource() == titleScreenPanel.getTitleNewGameButton()) {
             game = new Game();
+            game.getPlayer().addToInventory(new Potion()); // TODO remove this (testing)
             cardLayout.show(gamePanel, "NAME_ENTRY");
         }
         if (e.getSource() == titleScreenPanel.getTitleLoadGameButton()) {
@@ -191,6 +196,9 @@ public class GUI extends JFrame {
         if (e.getActionCommand().equals("WARD") && game.getPlayer().getMana() <
                 game.getPlayer().getShield().getWardCost()) {
             System.out.println("Not enough mana to cast a Ward!");
+        }
+        if (e.getActionCommand().equals("POTION") && !game.getPlayer().getInventory().has("Health Potion")) {
+            System.out.println("No potions in inventory!");
         }
         else if (playerFirst) {
             playerTurn(e);
@@ -233,7 +241,12 @@ public class GUI extends JFrame {
 
     //Responses to events in inventoryPanel
     private void inventoryAction(ActionEvent e) {
-
+        if (e.getSource() == inventoryPanel.getDummyPrintButton()) {
+            game.getPlayer().getInventory().iterate();
+        }
+        if (e.getSource() == inventoryPanel.getInventoryBackButton()) {
+            cardLayout.show(gamePanel, "MAP");
+        }
     }
 
     //Responses to events in mapPanel
@@ -248,6 +261,9 @@ public class GUI extends JFrame {
         }
         if (e.getSource() == mapPanel.getMapShopButton()) {
             cardLayout.show(gamePanel, "SHOP_HOME");
+        }
+        if (e.getSource() == mapPanel.getMapInventoryButton()) {
+            cardLayout.show(gamePanel, "INVENTORY");
         }
     }
 
