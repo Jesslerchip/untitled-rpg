@@ -9,20 +9,24 @@ public class PanelMap extends JPanel {
     private JButton mapTitleButton;
     private JButton mapBattleButton;
     private JButton mapShopButton;
+    private JButton mapInventoryButton;
     private JLabel mapPlayerName;
     public  PanelMap() {
         mapTitleButton = new JButton("Title");
         mapBattleButton = new JButton("Battle");
         mapShopButton = new JButton("Shop");
+        mapInventoryButton = new JButton("Inventory");
         mapPlayerName = new JLabel();
 
         mapTitleButton.setFocusable(false);
         mapBattleButton.setFocusable(false);
         mapShopButton.setFocusable(false);
+        mapInventoryButton.setFocusable(false);
 
         this.add(mapTitleButton);
         this.add(mapBattleButton);
         this.add(mapShopButton);
+        this.add(mapInventoryButton);
         this.add(mapPlayerName);
     }
 
@@ -30,6 +34,7 @@ public class PanelMap extends JPanel {
         mapBattleButton.addActionListener(listener);
         mapTitleButton.addActionListener(listener);
         mapShopButton.addActionListener(listener);
+        mapInventoryButton.addActionListener(listener);
     }
 
     public void setMapPlayerName(String name) {
@@ -43,4 +48,6 @@ public class PanelMap extends JPanel {
     public JButton getMapTitleButton() { return mapTitleButton; }
 
     public JButton getMapShopButton() { return mapShopButton; }
+
+    public JButton getMapInventoryButton() { return mapInventoryButton; }
 }

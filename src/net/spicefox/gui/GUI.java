@@ -1,6 +1,7 @@
 package net.spicefox.gui;
 
 import net.spicefox.util.*;
+import net.spicefox.gear.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -233,7 +234,18 @@ public class GUI extends JFrame {
 
     //Responses to events in inventoryPanel
     private void inventoryAction(ActionEvent e) {
-
+        if (e.getSource() == inventoryPanel.getDummyAddButton()) {
+            game.getPlayer().getInventory().addItem(game.getPlayer().getBoots());
+        }
+        if (e.getSource() == inventoryPanel.getDummyRemoveButton()) {
+            game.getPlayer().getInventory().removeItem(game.getPlayer().getBoots());
+        }
+        if (e.getSource() == inventoryPanel.getDummyPrintButton()) {
+            game.getPlayer().getInventory().iterate();
+        }
+        if (e.getSource() == inventoryPanel.getInventoryBackButton()) {
+            cardLayout.show(gamePanel, "MAP");
+        }
     }
 
     //Responses to events in mapPanel
@@ -248,6 +260,9 @@ public class GUI extends JFrame {
         }
         if (e.getSource() == mapPanel.getMapShopButton()) {
             cardLayout.show(gamePanel, "SHOP_HOME");
+        }
+        if (e.getSource() == mapPanel.getMapInventoryButton()) {
+            cardLayout.show(gamePanel, "INVENTORY");
         }
     }
 

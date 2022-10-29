@@ -1,7 +1,6 @@
 package net.spicefox.gear;
 
 public class BootsDummy extends Boots {
-
     public BootsDummy() {
 
         setDurability(0);
@@ -9,5 +8,8 @@ public class BootsDummy extends Boots {
         setModEvasion(0);
 
     }
-
+    @Override
+    public String toString() {
+        return "Dummy boots";
+    }
 }

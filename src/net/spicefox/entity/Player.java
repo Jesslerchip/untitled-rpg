@@ -1,6 +1,7 @@
 package net.spicefox.entity;
 
 import net.spicefox.gear.*;
+import net.spicefox.util.Inventory;
 
 public class Player extends Entity{
     private int spirit;
@@ -8,6 +9,7 @@ public class Player extends Entity{
     private double modFamiliarXpRate;
     private double modFamiliarDropRate;
 
+    private Inventory inventory;
     public Player(String name) {
         setMaxHp(1);
         setHp(getMaxHp());
@@ -29,6 +31,8 @@ public class Player extends Entity{
         this.setPlayerStats();
         this.setHp(getMaxHp());
         this.setMana(getMaxMana());
+
+        inventory = new Inventory();
     }
 
     public int getSpirit() {
@@ -101,6 +105,10 @@ public class Player extends Entity{
         setModFamiliarXpRate();
         setModFamiliarDropRate();
         setStats();
+    }
+
+    public Inventory getInventory() {
+        return inventory;
     }
 
 }
