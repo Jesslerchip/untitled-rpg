@@ -9,7 +9,6 @@ public class Player extends Entity{
     private double modFamiliarXpRate;
     private double modFamiliarDropRate;
 
-    private Inventory inventory;
     public Player(String name) {
         setMaxHp(1);
         setHp(getMaxHp());
@@ -32,7 +31,7 @@ public class Player extends Entity{
         this.setHp(getMaxHp());
         this.setMana(getMaxMana());
 
-        inventory = new Inventory();
+        this.inventory = new Inventory();
     }
 
     public int getSpirit() {
@@ -105,10 +104,6 @@ public class Player extends Entity{
         setModFamiliarXpRate();
         setModFamiliarDropRate();
         setStats();
-    }
-
-    public Inventory getInventory() {
-        return inventory;
     }
 
 }
