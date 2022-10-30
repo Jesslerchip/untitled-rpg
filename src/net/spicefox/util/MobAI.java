@@ -9,7 +9,6 @@ public class MobAI {
     static Random random = new Random();
 
     public static String getAction(Mob mob, Player player) {
-
         int scoreAttack = genScoreAttack(mob, player);
         int scoreWard = genScoreWard(mob, player);
         String action = chooseAction(scoreAttack, scoreWard);
@@ -22,8 +21,18 @@ public class MobAI {
 
         int scoreAttack = 0;
 
+        // RNG
         int rng = random.nextInt(51);
         scoreAttack += rng;
+
+        // Personality checks
+        switch (mob.getBehavior()) {
+            case "CUTE":
+                scoreAttack -= 5;
+                break;
+            default:
+                break;
+        }
 
         if (mob.getHp() <= 0.3 * mob.getMaxHp()) { scoreAttack += 10; }
         if (mob.getAttack() * 1.1 - player.getWardHp() < 0) { scoreAttack += 20; }

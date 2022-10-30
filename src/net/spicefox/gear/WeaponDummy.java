@@ -8,6 +8,6 @@ public class WeaponDummy extends Weapon {
     }
     @Override
     public String toString() {
-        return "Dummy weapon";
+        return "None";
     }
 }

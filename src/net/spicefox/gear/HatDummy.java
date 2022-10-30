@@ -9,6 +9,6 @@ public class HatDummy extends Hat {
     }
     @Override
     public String toString() {
-        return "Dummy hat";
+        return "None";
     }
 }
