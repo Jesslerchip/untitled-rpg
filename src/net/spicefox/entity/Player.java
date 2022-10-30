@@ -1,7 +1,7 @@
 package net.spicefox.entity;
 
 import net.spicefox.gear.*;
-import net.spicefox.util.Inventory;
+import net.spicefox.inventory.Inventory;
 
 public class Player extends Entity{
     private int spirit;

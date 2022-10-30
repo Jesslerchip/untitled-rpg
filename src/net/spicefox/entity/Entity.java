@@ -1,8 +1,8 @@
 package net.spicefox.entity;
 
-import net.spicefox.familiar.Familiar;
 import net.spicefox.gear.*;
-import net.spicefox.util.Inventory;
+import net.spicefox.inventory.Inventory;
+import net.spicefox.potions.Consumable;
 
 public abstract class Entity {
     private String name;
@@ -300,4 +300,13 @@ public abstract class Entity {
         return inventory;
     }
 
+    //Add gear
+    public void addToInventory(Equippable item) {
+        inventory.addToEquipment(item);
+    }
+
+    //Add potion
+    public void addToInventory(String item) {
+        inventory.addToSatchel(item);
+    }
 }

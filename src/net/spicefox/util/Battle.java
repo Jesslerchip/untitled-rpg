@@ -1,6 +1,7 @@
 package net.spicefox.util;
 
 import net.spicefox.entity.*;
+import net.spicefox.potions.Consumable;
 
 public class Battle {
     //Obviously will not function like this in final version; this is for testing purposes
@@ -71,7 +72,11 @@ public class Battle {
     }
 
     public static void turnPotion(Entity attacker) {
-        attacker.setHp(attacker.getHp() + 25); // TODO: Can't get heal from potion object if not stored as object?
+        Consumable c = attacker.getInventory().getFromSatchel("HEALTH POTION");
+        if (c == null) { return; }
+        if (c.getEffectType().equals("HEAL")) {
+            attacker.setHp(attacker.getHp() + c.getEffectMod());
+        }
     }
 
     public static void turnFamiliar(Entity attacker, Entity defender) {

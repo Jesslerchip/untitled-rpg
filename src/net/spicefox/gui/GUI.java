@@ -168,6 +168,7 @@ public class GUI extends JFrame {
     private void titleScreenAction(ActionEvent e) {
         if (e.getSource() == titleScreenPanel.getTitleNewGameButton()) {
             game = new Game();
+            game.getPlayer().addToInventory("HEALTH POTION"); // TODO TESTING
             cardLayout.show(gamePanel, "NAME_ENTRY");
         }
         if (e.getSource() == titleScreenPanel.getTitleLoadGameButton()) {
@@ -235,7 +236,7 @@ public class GUI extends JFrame {
     //Responses to events in inventoryPanel
     private void inventoryAction(ActionEvent e) {
         if (e.getSource() == inventoryPanel.getDummyPrintButton()) {
-
+            game.getPlayer().getInventory().printInventory();
         }
         if (e.getSource() == inventoryPanel.getInventoryBackButton()) {
             cardLayout.show(gamePanel, "MAP");
