@@ -3,11 +3,15 @@ package net.spicefox.util;
 import net.spicefox.entity.*;
 import net.spicefox.potions.Consumable;
 
+import java.util.Random;
+
 public class Battle {
     //Obviously will not function like this in final version; this is for testing purposes
 
     private Player player;
     private Mob mob;
+
+    static Random random = new Random();
 
     public Battle(Player player, Mob mob) {
         this.player = player;
@@ -26,6 +30,12 @@ public class Battle {
     public void takeTurn(Entity attacker, Entity defender, String action) {
         switch (action) {
             case "ATTACK":
+                // Second Strike roll
+                int secondStrikeCheck = random.nextInt(0, 100);
+                if (secondStrikeCheck <= attacker.getSecondStrikeChance()) {
+                    turnAttack(attacker, defender);
+                    System.out.println(attacker.getName() + " moved quickly and got a Second Strike!");
+                }
                 turnAttack(attacker, defender);
                 break;
             case "WARD":
@@ -42,25 +52,36 @@ public class Battle {
     public static void turnAttack(Entity attacker, Entity defender) {
         int damage = (int) (attacker.getAttack() * 1.1);
 
-        if (defender.getWardHp() > 0) {
-            int wardHp = defender.getWardHp();
-            defender.setWardHp(wardHp - damage);
-            if (defender.getWardHp() < 0) {
-                defender.setWardHp(0);
-                System.out.println(defender.getName() + "'s Ward has dissipated!");
+        int accuracyCheck = random.nextInt(0, 100 + defender.getEvasion());
+        if (accuracyCheck <= attacker.getAccuracy()) {
+            if (defender.getWardHp() > 0) {
+                int wardHp = defender.getWardHp();
+                defender.setWardHp(wardHp - damage);
+                if (defender.getWardHp() < 0) {
+                    defender.setWardHp(0);
+                    System.out.println(defender.getName() + "'s Ward has dissipated!");
+                }
+                damage -= wardHp;
             }
-            damage -= wardHp;
-        }
 
-        if (damage > 0) {
-            damage -= defender.getDefense();
-            if (damage < 1) {
-                damage = 1;
+            if (damage > 0) {
+                int criticalCheck = random.nextInt(0, 100);
+                if (criticalCheck <= attacker.getCritChance()) {
+                    damage *= 2;
+                    System.out.println(attacker.getName() + " got a critical hit!");
+                }
+                damage -= defender.getDefense();
+                if (damage < 1) {
+                    damage = 1;
+                }
+                defender.setHp(defender.getHp() - damage);
             }
-            defender.setHp(defender.getHp() - damage);
-        }
 
-        damageGear(attacker, defender, damage);
+            damageGear(attacker, defender, damage);
+        }
+        else {
+            System.out.println(attacker.getName() + "'s attack missed!");
+        }
     }
 
     public static void turnWard(Entity attacker) {
@@ -89,6 +110,17 @@ public class Battle {
         defender.getHat().setDurability(defender.getHat().getDurability() - damage);
         defender.getShield().setDurability(defender.getShield().getDurability() - damage);
         attacker.getWeapon().setDurability(attacker.getWeapon().getDurability() - damage);
+    }
+
+    public static void regenMana(Player player, Mob mob) {
+        player.setMana(player.getMana() + (int) (player.getMaxMana() / 10));
+        if (player.getMana() > player.getMaxMana()) {
+            player.setMana(player.getMaxMana());
+        }
+        mob.setMana(mob.getMana() + (int) (mob.getMaxMana() / 10));
+        if (mob.getMana() > mob.getMaxMana()) {
+            mob.setMana(mob.getMaxMana());
+        }
     }
 
 }

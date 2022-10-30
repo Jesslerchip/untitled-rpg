@@ -9,11 +9,12 @@ public class Game implements Serializable {
     private Battle battle;
 
     public Game () {
-        player = new Player("Dummy");
+        player = new Player();
     }
 
+    // TODO: Take in location and select from a list of available mobs
     public void genMob() {
-        mob = new Mob();
+        mob = new MobKutesune();
     }
 
     public Player getPlayer() {

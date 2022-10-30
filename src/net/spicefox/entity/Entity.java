@@ -4,7 +4,7 @@ import net.spicefox.gear.*;
 import net.spicefox.inventory.Inventory;
 import net.spicefox.potions.Consumable;
 
-public abstract class Entity {
+public class Entity {
     private String name;
 
     // Stats
@@ -15,17 +15,17 @@ public abstract class Entity {
     int speed;
     int attack;
     int defense;
-    private int accuracy;
-    private int critChance;
-    private int secondStrikeChance;
-    private int evasion;
+    int accuracy;
+    int critChance;
+    int secondStrikeChance;
+    int evasion;
 
     // Skills
-    int vitality;
-    int magick;
-    int dexterity;
-    int strength;
-    int resistance;
+    private int vitality;
+    private int magick;
+    private int dexterity;
+    private int strength;
+    private int resistance;
     private int focus;
 
     // Gear
@@ -44,14 +44,21 @@ public abstract class Entity {
     double modSpeed;
     double modAttack;
     double modDefense;
-    private double modAccuracy;
-    private double modCritChance;
-    private double modSecondStrikeChance;
+    double modAccuracy;
+    double modCritChance;
+    double modSecondStrikeChance;
 
     // Gets added rather than multiplied
-    private int modEvasion;
+    int modEvasion;
 
     Inventory inventory;
+
+    public Entity() {
+        setName("Dummy");
+        initGear();
+        initSkills();
+        setStats();
+    }
 
     // GETTERS
     public String getName() { return name; }
@@ -158,7 +165,10 @@ public abstract class Entity {
     }
 
     public void setMaxHp() {
-        double hpPercent = hp / maxHp;
+        double hpPercent = 1;
+        if (maxHp != 0) {
+            hpPercent = hp / maxHp;
+        }
         maxHp = (int)(90 + (vitality * 10) * modMaxHp) + robe.getModHp();
         int newHp = (int) (hpPercent * maxHp);
         setHp(newHp);
@@ -173,7 +183,10 @@ public abstract class Entity {
     }
 
     public void setMaxMana() {
-        double manaPercent = mana / maxMana;
+        double manaPercent = 1;
+        if (maxMana != 0) {
+            manaPercent = mana / maxMana;
+        }
         maxMana = (int)(90 + (magick * 10) * modMaxMana) + robe.getModMana();
         int newMana = (int) (manaPercent * maxMana);
         setMana(newMana);
@@ -259,15 +272,32 @@ public abstract class Entity {
         wardHp = wardMaxHp;
     }
     public void setWardHp(int wardHp) { this.wardHp = wardHp; }
-    public void setModMaxHp() { this.modMaxHp = 1; }
-    public void setModMaxMana() { this.modMaxMana = 1; }
-    public void setModSpeed() { this.modSpeed = 1; }
-    public void setModAttack() { this.modAttack = 1; }
-    public void setModDefense() { this.modDefense = 1; }
-    public void setModAccuracy() { this.modAccuracy = 1; }
-    public void setModCritChance() { this.modCritChance = 1; }
-    public void setModSecondStrikeChance() { this.modSecondStrikeChance = 1; }
-    public void setModEvasion() { this.modEvasion = 0; }
+    public void setModMaxHp() { modMaxHp = 1; }
+    public void setModMaxMana() { modMaxMana = 1; }
+    public void setModSpeed() { modSpeed = 1; }
+    public void setModAttack() { modAttack = 1; }
+    public void setModDefense() { modDefense = 1; }
+    public void setModAccuracy() { modAccuracy = 1; }
+    public void setModCritChance() { modCritChance = 1; }
+    public void setModSecondStrikeChance() { modSecondStrikeChance = 1; }
+    public void setModEvasion() { modEvasion = 0; }
+
+    public void initSkills() {
+        setVitality(1);
+        setMagick(1);
+        setDexterity(1);
+        setStrength(1);
+        setResistance(1);
+        setFocus(1);
+    }
+
+    public void initGear() {
+        setHat(new HatDummy());
+        setRobe(new RobeDummy());
+        setBoots(new BootsDummy());
+        setShield(new ShieldDummy());
+        setWeapon(new WeaponDummy());
+    }
 
     public void setStats() {
         setModMaxHp();

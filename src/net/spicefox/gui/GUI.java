@@ -202,6 +202,7 @@ public class GUI extends JFrame {
             mobTurn();
             playerTurn(e);
         }
+        game.getBattle().regenMana(game.getPlayer(), game.getMob());
     }
 
     public void playerTurn(ActionEvent e) {
@@ -223,6 +224,10 @@ public class GUI extends JFrame {
             game.getPlayer().setHp(game.getPlayer().getMaxHp()); //NOT PERMANENT? Resets player at map
         }
         if (game.getMob().getHp() <= 0) {
+            // Add bits
+            int mobBits = game.getMob().getDropBits();
+            System.out.println(game.getPlayer().getName() + " earned " + mobBits + " bits!");
+            game.getPlayer().setBits(game.getPlayer().getBits() + mobBits);
             cardLayout.show(gamePanel, "MAP");
             game.getPlayer().setHp(game.getPlayer().getMaxHp()); //NOT PERMANENT? Resets player at map
         }

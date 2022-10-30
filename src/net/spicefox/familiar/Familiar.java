@@ -7,16 +7,15 @@ public class Familiar {
     private int xpMax;
 
     // Modifiers
-    private double modHP;
-    private double modMana;
+    private double modMaxHp;
+    private double modMaxMana;
     private double modSpeed;
     private double modAttack;
     private double modDefense;
     private double modAccuracy;
     private double modCritChance;
-
-    // Flags
-    private boolean isUnlocked;
+    private double modSecondStrikeChance;
+    private int modEvasion;
 
     // Level Up Methods
     public void addLevel() {
@@ -42,22 +41,26 @@ public class Familiar {
     public int getLevel() { return level; }
     public int getXP() { return xp; }
     public int getXPMax() { return xpMax; }
-    public double getModHP() { return this.modHP; }
-    public double getModMana() { return this.modMana; }
-    public double getModSpeed() { return this.modSpeed; }
-    public double getModAttack() { return this.modAttack; }
-    public double getModDefense() { return this.modDefense; }
-    public double getModAccuracy() { return this.modAccuracy; }
-    public double getModCritChance() { return this.modCritChance; }
+    public double getModMaxHp() { return modMaxHp; }
+    public double getModMaxMana() { return modMaxMana; }
+    public double getModSpeed() { return modSpeed; }
+    public double getModAttack() { return modAttack; }
+    public double getModDefense() { return modDefense; }
+    public double getModAccuracy() { return modAccuracy; }
+    public double getModCritChance() { return modCritChance; }
+    public double getModSecondStrikeChance() { return modSecondStrikeChance; }
+    public int getModEvasion() { return modEvasion; }
 
     // SETTERS
-    public void setModHP(double modHP) { this.modHP = modHP; }
-    public void setModMana(double modMana) { this.modMana = modMana; }
+    public void setModMaxHp(double modMaxHp) { this.modMaxHp = modMaxHp; }
+    public void setModMana(double modMaxMana) { this.modMaxMana = modMaxMana; }
     public void setModSpeed(double modSpeed) { this.modSpeed = modSpeed; }
     public void setModAttack(double modAttack) { this.modAttack = modAttack; }
     public void setModDefense(double modDefense) { this.modDefense = modDefense; }
     public void setModAccuracy(double modAccuracy) { this.modAccuracy = modAccuracy; }
     public void setModCritChance(double modCritChance) { this.modCritChance = modCritChance; }
+    public void setModSecondStrikeChance(double modSecondStrikeChance) { this.modSecondStrikeChance = modSecondStrikeChance; }
+    public void setModEvasion(int modEvasion) { this.modEvasion = modEvasion; }
 
 
 }

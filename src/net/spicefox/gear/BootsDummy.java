@@ -10,6 +10,6 @@ public class BootsDummy extends Boots {
     }
     @Override
     public String toString() {
-        return "Dummy boots";
+        return "None";
     }
 }

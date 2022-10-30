@@ -11,6 +11,6 @@ public class ShieldDummy extends Shield{
     }
     @Override
     public String toString() {
-        return "Dummy shield";
+        return "None";
     }
 }
