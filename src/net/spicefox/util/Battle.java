@@ -71,7 +71,6 @@ public class Battle {
     }
 
     public static void turnPotion(Entity attacker) {
-        attacker.removeFromInventory("Health Potion");
         attacker.setHp(attacker.getHp() + 25); // TODO: Can't get heal from potion object if not stored as object?
     }
 

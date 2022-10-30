@@ -1,6 +1,6 @@
 package net.spicefox.gear;
 
-public class Hat {
+public class Hat implements Equippable {
 
     private int durability;
     private int modSecondStrikeChance;

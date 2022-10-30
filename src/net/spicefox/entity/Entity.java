@@ -300,11 +300,4 @@ public abstract class Entity {
         return inventory;
     }
 
-    public void addToInventory(Object o) {
-        inventory.addItem(o);
-    }
-
-    public void removeFromInventory(Object o) {
-        inventory.removeItem(o);
-    }
 }

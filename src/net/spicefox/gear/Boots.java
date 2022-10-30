@@ -1,6 +1,6 @@
 package net.spicefox.gear;
 
-public class Boots {
+public class Boots implements Equippable {
 
     private int durability;
     private int modSpeed;

@@ -1,6 +1,6 @@
 package net.spicefox.gear;
 
-public class Shield {
+public class Shield implements Equippable {
 
     private int durability;
     private int modDefense;

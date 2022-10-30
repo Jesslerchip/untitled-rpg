@@ -1,6 +1,6 @@
 package net.spicefox.gear;
 
-public class Weapon {
+public class Weapon implements Equippable {
 
     private int durability;
     private int modAttack;
