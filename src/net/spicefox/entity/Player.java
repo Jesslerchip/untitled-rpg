@@ -50,24 +50,77 @@ public class Player extends Entity{
     }
 
     @Override
-    public void setModMaxHp() { modMaxHp = 1 * getActiveFamiliar().getModMaxHp(); }
-    @Override
-    public void setModMaxMana() { modMaxMana = 1 * getActiveFamiliar().getModMaxMana(); }
-    @Override
-    public void setModSpeed() { modSpeed = 1 * getActiveFamiliar().getModSpeed(); }
-    @Override
-    public void setModAttack() { modAttack = 1 * getActiveFamiliar().getModAttack(); }
-    @Override
-    public void setModDefense() { modDefense = 1 * getActiveFamiliar().getModDefense(); }
-    @Override
-    public void setModAccuracy() { modAccuracy = 1 * getActiveFamiliar().getModAccuracy(); }
-    @Override
-    public void setModCritChance() { modCritChance = 1 * getActiveFamiliar().getModCritChance(); }
-    @Override
-    public void setModSecondStrikeChance() {
-        modSecondStrikeChance = 1 * getActiveFamiliar().getModSecondStrikeChance();
+    public void setModMaxHp() {
+        if (getActiveFamiliar() != null) {
+            modMaxHp = 1 * getActiveFamiliar().getModMaxHp();
+        }
+        else {
+            modMaxHp = 1;
+        }
     }
     @Override
-    public void setModEvasion() { modEvasion = 0 + getActiveFamiliar().getModEvasion(); }
+    public void setModMaxMana() {
+        if (getActiveFamiliar() != null) {
+            modMaxMana = 1 * getActiveFamiliar().getModMaxMana();
+        } else {
+            modMaxMana = 1;
+        }
+    }
+    @Override
+    public void setModSpeed() {
+        if (getActiveFamiliar() != null) {
+            modSpeed = 1 * getActiveFamiliar().getModSpeed();
+        } else {
+            modSpeed = 1;
+        }
+    }
+    @Override
+    public void setModAttack() {
+        if (getActiveFamiliar() != null) {
+            modAttack = 1 * getActiveFamiliar().getModAttack();
+        } else {
+            modAttack = 1;
+        }
+    }
+    @Override
+    public void setModDefense() {
+        if (getActiveFamiliar() != null) {
+            modDefense = 1 * getActiveFamiliar().getModDefense();
+        } else {
+            modDefense = 1;
+        }
+    }
+    @Override
+    public void setModAccuracy() {
+        if (getActiveFamiliar() != null) {
+            modAccuracy = 1 * getActiveFamiliar().getModAccuracy();
+        } else {
+            modAccuracy = 1;
+        }
+    }
+    @Override
+    public void setModCritChance() {
+        if (getActiveFamiliar() != null) {
+            modCritChance = 1 * getActiveFamiliar().getModCritChance();
+        } else {
+            modCritChance = 1;
+        }
+    }
+    @Override
+    public void setModSecondStrikeChance() {
+        if (getActiveFamiliar() != null) {
+            modSecondStrikeChance = 1 * getActiveFamiliar().getModSecondStrikeChance();
+        } else {
+            modSecondStrikeChance = 1;
+        }
+    }
+    @Override
+    public void setModEvasion() {
+        if (getActiveFamiliar() != null) {
+            modEvasion = 0 + getActiveFamiliar().getModEvasion();
+        } else {
+            modEvasion = 0;
+        }
+    }
 
 }

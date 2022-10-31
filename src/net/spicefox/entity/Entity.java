@@ -58,6 +58,7 @@ public class Entity {
         initGear();
         initSkills();
         setStats();
+        inventory = new Inventory();
     }
 
     // GETTERS

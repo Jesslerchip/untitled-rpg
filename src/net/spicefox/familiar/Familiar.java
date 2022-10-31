@@ -6,6 +6,8 @@ public class Familiar {
     private int xp;
     private int xpMax;
 
+    private String name;
+
     // Modifiers
     private double modMaxHp;
     private double modMaxMana;
@@ -39,6 +41,8 @@ public class Familiar {
 
     // GETTERS
     public int getLevel() { return level; }
+
+    public String getName() { return name; }
     public int getXP() { return xp; }
     public int getXPMax() { return xpMax; }
     public double getModMaxHp() { return modMaxHp; }
@@ -52,6 +56,7 @@ public class Familiar {
     public int getModEvasion() { return modEvasion; }
 
     // SETTERS
+    public void setName(String name) { this.name = name; }
     public void setModMaxHp(double modMaxHp) { this.modMaxHp = modMaxHp; }
     public void setModMana(double modMaxMana) { this.modMaxMana = modMaxMana; }
     public void setModSpeed(double modSpeed) { this.modSpeed = modSpeed; }

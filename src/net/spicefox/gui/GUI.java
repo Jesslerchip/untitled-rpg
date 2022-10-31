@@ -235,6 +235,8 @@ public class GUI extends JFrame {
             int familiarChance = random.nextInt(0, 100);
             if (familiarChance <= game.getMob().getDropChanceFamiliar() + game.getPlayer().getModFamiliarDropRate()) {
                 game.getPlayer().getBestiary().add(game.getMob().getFamiliarDrop());
+                System.out.println(game.getPlayer().getName() + " recovered a " +
+                        game.getMob().getFamiliarDrop().getName() + " Familiar!");
             }
             cardLayout.show(gamePanel, "MAP");
             game.getPlayer().setHp(game.getPlayer().getMaxHp()); //NOT PERMANENT? Resets player at map
