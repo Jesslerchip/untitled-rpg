@@ -98,7 +98,11 @@ public class Battle {
         Consumable c = attacker.getInventory().getFromSatchel("HEALTH POTION");
         if (c == null) { return; }
         if (c.getEffectType().equals("HEAL")) {
-            attacker.setHp(attacker.getHp() + c.getEffectMod());
+            if (attacker.getHp() + c.getEffectMod() > attacker.getMaxHp()) {
+                attacker.setHp(attacker.getMaxHp());
+            } else {
+                attacker.setHp(attacker.getHp() + c.getEffectMod());
+            }
         }
     }
 

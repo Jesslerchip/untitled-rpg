@@ -28,6 +28,14 @@ public class Inventory {
         }
     }
 
+    public boolean checkForItem(String item) {
+        return satchel.satchelHas(item);
+    }
+
+    public boolean checkForItem(Equippable item) {
+        return false;
+    }
+
     public void printInventory() {
         System.out.println(satchel + "\n" + equipment);
     }

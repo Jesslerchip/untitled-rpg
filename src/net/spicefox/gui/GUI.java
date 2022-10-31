@@ -204,6 +204,9 @@ public class GUI extends JFrame {
                 game.getPlayer().getWardCost()) {
             System.out.println("Not enough mana to cast a Ward!");
         }
+        else if (e.getActionCommand().equals("POTION") && !game.getPlayer().getInventory().checkForItem("HEALTH POTION")) {
+            System.out.println(game.getPlayer().getName() + " has no potions!");
+        }
         else if (playerFirst) {
             playerTurn(e);
             mobTurn();
