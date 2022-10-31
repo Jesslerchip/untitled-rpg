@@ -1,10 +1,12 @@
 package net.spicefox.gear;
 
-public class WeaponDummy extends Weapon {
-    public WeaponDummy() {
+public class BootsDefault extends Boots {
+    public BootsDefault() {
+
         setDurability(0);
-        setModAccuracy(0);
-        setModAttack(0);
+        setModSpeed(0);
+        setModEvasion(0);
+
     }
     @Override
     public String toString() {

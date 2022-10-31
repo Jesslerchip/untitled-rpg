@@ -1,12 +1,11 @@
 package net.spicefox.gear;
 
-public class RobeDummy extends Robe {
-    public RobeDummy() {
+public class HatDefault extends Hat {
+    public HatDefault() {
 
         setDurability(0);
-        setModHp(0);
-        setModMana(0);
-
+        setModSecondStrikeChance(0);
+        setModCriticalChance(0);
     }
     @Override
     public String toString() {

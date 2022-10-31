@@ -1,11 +1,11 @@
 package net.spicefox.gear;
 
-public class BootsDummy extends Boots {
-    public BootsDummy() {
+public class RobeDefault extends Robe {
+    public RobeDefault() {
 
         setDurability(0);
-        setModSpeed(0);
-        setModEvasion(0);
+        setModHp(0);
+        setModMana(0);
 
     }
     @Override

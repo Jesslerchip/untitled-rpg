@@ -1,6 +1,8 @@
 package net.spicefox.util;
 
 import net.spicefox.entity.*;
+import net.spicefox.familiar.Familiar;
+import net.spicefox.familiar.FamiliarKutesune;
 import net.spicefox.potions.Consumable;
 
 import java.util.Random;
@@ -86,8 +88,8 @@ public class Battle {
 
     public static void turnWard(Entity attacker) {
 
-        attacker.setWardMaxHP();
-        attacker.setMana(attacker.getMana() - attacker.getShield().getWardCost());
+        attacker.setWardHp(attacker.getWardMaxHp());
+        attacker.setMana(attacker.getMana() - attacker.getWardCost());
         System.out.println(attacker.getName() + " cast a Ward!");
 
     }
@@ -100,8 +102,12 @@ public class Battle {
         }
     }
 
-    public static void turnFamiliar(Entity attacker, Entity defender) {
-
+    public static void turnFamiliar(Player player, Familiar familiar) {
+        player.setActiveFamiliar(familiar);
+        player.setFamiliarTimer(3);
+        player.setMana(player.getMana() - player.getActiveFamiliar().getCost());
+        player.setPlayerStats();
+        System.out.println(player.getName() + " summoned " + familiar.getName() + "!");
     }
 
     private static void damageGear(Entity attacker, Entity defender, int damage) {
@@ -112,7 +118,7 @@ public class Battle {
         attacker.getWeapon().setDurability(attacker.getWeapon().getDurability() - damage);
     }
 
-    public static void regenMana(Player player, Mob mob) {
+    public static void endTurn(Player player, Mob mob) {
         player.setMana(player.getMana() + (int) (player.getMaxMana() / 10));
         if (player.getMana() > player.getMaxMana()) {
             player.setMana(player.getMaxMana());
@@ -120,6 +126,13 @@ public class Battle {
         mob.setMana(mob.getMana() + (int) (mob.getMaxMana() / 10));
         if (mob.getMana() > mob.getMaxMana()) {
             mob.setMana(mob.getMaxMana());
+        }
+        if (player.getFamiliarTimer() != 0) {
+            player.setFamiliarTimer(player.getFamiliarTimer() - 1);
+            if (player.getFamiliarTimer() == 0) {
+                System.out.println(player.getName() + "'s " + player.getActiveFamiliar().getName() + " disappeared!");
+                player.setActiveFamiliar(null);
+            }
         }
     }
 

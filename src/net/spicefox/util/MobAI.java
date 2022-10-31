@@ -56,7 +56,7 @@ public class MobAI {
         if (mob.getHp() >= 0.9 * mob.getMaxHp()) { scoreWard += 10; }
         if (mob.getWardHp() < (player.getAttack() * 1.1) && mob.getWardMaxHp() >=
                 (player.getAttack() * 1.1) * 1.5) { scoreWard += 10; }
-        if (mob.getMana() < mob.getShield().getWardCost()) { scoreWard = -1000; }
+        if (mob.getMana() < mob.getWardCost()) { scoreWard = -1000; }
 
         return scoreWard;
 

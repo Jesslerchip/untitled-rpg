@@ -14,10 +14,10 @@ public class Main {
     public static void setup(Settings settings) {
 
         if (settings != null) {
-            new GUI(settings); // net.spicefox.util.Settings.sav found, use constructor with net.spicefox.util.Settings (launches game)
+            new GUI(settings); // Settings.sav found, use constructor with Settings (launches game)
         }
         else {
-            new GUI(); // No net.spicefox.util.Settings.sav found, use constructor without net.spicefox.util.Settings (adds a settings prompt for user)
+            new GUI(); // No Settings.sav found, use constructor without Settings (adds a settings prompt for user)
         }
     }
 }

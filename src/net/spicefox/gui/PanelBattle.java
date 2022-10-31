@@ -59,10 +59,12 @@ public class PanelBattle extends JPanel {
         playerManaLabel.setText(player.getName() + " Mana: " + player.getMana());
         mobHPLabel.setText(mob.getName() + " HP: " + mob.getHp());
         mobManaLabel.setText(mob.getName() + " Mana: " + mob.getMana());
-    }
-
-    public JButton getAttackButton() {
-        return attackButton;
+        if (player.getBestiary().isEmpty()) {
+            familiarButton.setEnabled(false);
+        }
+        else {
+            familiarButton.setEnabled(true);
+        }
     }
 
 }

@@ -1,12 +1,12 @@
 package net.spicefox.gear;
 
-public class ShieldDummy extends Shield{
-    public ShieldDummy() {
+public class ShieldDefault extends Shield{
+    public ShieldDefault() {
 
         setDurability(0);
         setModDefense(0);
         setModWardMaxHp(15);
-        setWardCost(15);
+        setModWardCost(0);
 
     }
     @Override

@@ -2,14 +2,15 @@ package net.spicefox.entity;
 
 import net.spicefox.familiar.Familiar;
 
-import java.util.HashSet;
+import java.util.HashMap;
 
 public class Player extends Entity{
     private int spirit;
     private int bits;
 
     private int numFamiliars;
-    private HashSet<Familiar> bestiary;
+    private int familiarTimer;
+    private HashMap<String, Familiar> bestiary;
     private Familiar activeFamiliar;
     private int modFamiliarXpRate;
     private int modFamiliarDropRate;
@@ -17,7 +18,7 @@ public class Player extends Entity{
     public Player() {
         setSpirit(1);
         setPlayerStats();
-        bestiary = new HashSet<>();
+        bestiary = new HashMap<>();
     }
 
     // Getters
@@ -25,9 +26,11 @@ public class Player extends Entity{
         return spirit;
     }
     public int getBits() { return bits; }
-    public HashSet<Familiar> getBestiary() { return bestiary; }
+    public int getNumFamiliars() { return numFamiliars; }
+    public int getFamiliarTimer() { return familiarTimer; }
+    public HashMap<String, Familiar> getBestiary() { return bestiary; }
     public Familiar getActiveFamiliar() { return activeFamiliar; }
-
+    public int getModFamiliarXpRate() { return modFamiliarXpRate; }
     public int getModFamiliarDropRate() { return modFamiliarDropRate; }
 
     // Setters
@@ -35,6 +38,9 @@ public class Player extends Entity{
         this.spirit = spirit;
     }
     public void setBits(int bits) { this.bits = bits; }
+    public void setNumFamiliars(int numFamiliars) { this.numFamiliars = numFamiliars; }
+    public void setFamiliarTimer(int familiarTimer) { this.familiarTimer = familiarTimer; }
+    public void setActiveFamiliar(Familiar familiar) { activeFamiliar = familiar; }
 
     public void setModFamiliarXpRate() {
         modFamiliarXpRate = (int) (spirit * 2.5);

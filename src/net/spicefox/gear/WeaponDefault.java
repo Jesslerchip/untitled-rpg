@@ -1,11 +1,10 @@
 package net.spicefox.gear;
 
-public class HatDummy extends Hat {
-    public HatDummy() {
-
+public class WeaponDefault extends Weapon {
+    public WeaponDefault() {
         setDurability(0);
-        setModSecondStrikeChance(0);
-        setModCriticalChance(0);
+        setModAccuracy(0);
+        setModAttack(0);
     }
     @Override
     public String toString() {

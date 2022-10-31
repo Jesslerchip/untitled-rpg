@@ -5,6 +5,7 @@ public class Familiar {
     private int level;
     private int xp;
     private int xpMax;
+    private int cost;
 
     private String name;
 
@@ -45,6 +46,7 @@ public class Familiar {
     public String getName() { return name; }
     public int getXP() { return xp; }
     public int getXPMax() { return xpMax; }
+    public int getCost() { return cost; }
     public double getModMaxHp() { return modMaxHp; }
     public double getModMaxMana() { return modMaxMana; }
     public double getModSpeed() { return modSpeed; }
@@ -56,9 +58,10 @@ public class Familiar {
     public int getModEvasion() { return modEvasion; }
 
     // SETTERS
+    public void setCost(int cost) { this.cost = cost; }
     public void setName(String name) { this.name = name; }
     public void setModMaxHp(double modMaxHp) { this.modMaxHp = modMaxHp; }
-    public void setModMana(double modMaxMana) { this.modMaxMana = modMaxMana; }
+    public void setModMaxMana(double modMaxMana) { this.modMaxMana = modMaxMana; }
     public void setModSpeed(double modSpeed) { this.modSpeed = modSpeed; }
     public void setModAttack(double modAttack) { this.modAttack = modAttack; }
     public void setModDefense(double modDefense) { this.modDefense = modDefense; }
@@ -66,6 +69,22 @@ public class Familiar {
     public void setModCritChance(double modCritChance) { this.modCritChance = modCritChance; }
     public void setModSecondStrikeChance(double modSecondStrikeChance) { this.modSecondStrikeChance = modSecondStrikeChance; }
     public void setModEvasion(int modEvasion) { this.modEvasion = modEvasion; }
+
+    public void setModifiers(double modMaxHp, double modMaxMana, double modSpeed, double modAttack,
+                             double modDefense, double modAccuracy, double modCritChance, double modSecondStrikeChance,
+                             int modEvasion) {
+
+        setModMaxHp(modMaxHp);
+        setModMaxMana(modMaxMana);
+        setModSpeed(modSpeed);
+        setModAttack(modAttack);
+        setModDefense(modDefense);
+        setModAccuracy(modAccuracy);
+        setModCritChance(modCritChance);
+        setModSecondStrikeChance(modSecondStrikeChance);
+        setModEvasion(modEvasion);
+
+    }
 
 
 }

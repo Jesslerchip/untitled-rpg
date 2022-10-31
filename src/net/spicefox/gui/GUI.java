@@ -1,5 +1,6 @@
 package net.spicefox.gui;
 
+import net.spicefox.familiar.Familiar;
 import net.spicefox.util.*;
 import net.spicefox.gear.*;
 import net.spicefox.potions.*;
@@ -191,19 +192,28 @@ public class GUI extends JFrame {
     private void battleAction(ActionEvent e) {
         boolean playerFirst = game.getBattle().isPlayerFirst();
 
-        if (e.getActionCommand().equals("WARD") && game.getPlayer().getMana() <
-                game.getPlayer().getShield().getWardCost()) {
+        if (e.getActionCommand().equals("FAMILIAR_SUMMON")) {
+            if (game.getPlayer().getActiveFamiliar() != null) {
+                System.out.println(game.getPlayer().getName() + " already has an active Familiar!");
+            }
+            else {
+                cardLayout.show(gamePanel, "BESTIARY");
+            }
+        }
+        else if (e.getActionCommand().equals("WARD") && game.getPlayer().getMana() <
+                game.getPlayer().getWardCost()) {
             System.out.println("Not enough mana to cast a Ward!");
         }
         else if (playerFirst) {
             playerTurn(e);
             mobTurn();
+            game.getBattle().endTurn(game.getPlayer(), game.getMob());
         }
         else {
             mobTurn();
             playerTurn(e);
+            game.getBattle().endTurn(game.getPlayer(), game.getMob());
         }
-        game.getBattle().regenMana(game.getPlayer(), game.getMob());
     }
 
     public void playerTurn(ActionEvent e) {
@@ -216,6 +226,7 @@ public class GUI extends JFrame {
         String action = MobAI.getAction(game.getMob(), game.getPlayer());
         game.getBattle().takeTurn(game.getMob(), game.getPlayer(), action);
         checkBattleStatus();
+        battlePanel.refreshStats(game.getPlayer(), game.getMob());
     }
 
     // TODO: Add code for taking gear damage and losing bits
@@ -234,18 +245,42 @@ public class GUI extends JFrame {
             Random random = new Random();
             int familiarChance = random.nextInt(0, 100);
             if (familiarChance <= game.getMob().getDropChanceFamiliar() + game.getPlayer().getModFamiliarDropRate()) {
-                game.getPlayer().getBestiary().add(game.getMob().getFamiliarDrop());
+                game.getPlayer().getBestiary().put(game.getMob().getName().toUpperCase(),
+                        game.getMob().getFamiliarDrop());
                 System.out.println(game.getPlayer().getName() + " recovered a " +
                         game.getMob().getFamiliarDrop().getName() + " Familiar!");
             }
             cardLayout.show(gamePanel, "MAP");
-            game.getPlayer().setHp(game.getPlayer().getMaxHp()); //NOT PERMANENT? Resets player at map
+            game.getPlayer().setMana(game.getPlayer().getMaxMana());
         }
     }
 
     //Responses to events in bestiaryPanel
     private void bestiaryAction(ActionEvent e) {
-
+        boolean playerFirst = game.getBattle().isPlayerFirst();
+        if (e.getActionCommand().equals("BACK")) {
+            cardLayout.show(gamePanel, "BATTLE");
+        }
+        else {
+            Familiar familiar = game.getPlayer().getBestiary().get(e.getActionCommand());
+            if (game.getPlayer().getMana() < familiar.getCost()) {
+                System.out.println(game.getPlayer().getName() +
+                        " doesn't have enough Mana to summon " + familiar.getName() + "!");
+            }
+            else if (playerFirst) {
+                cardLayout.show(gamePanel, "BATTLE");
+                game.getBattle().turnFamiliar(game.getPlayer(), familiar);
+                battlePanel.refreshStats(game.getPlayer(), game.getMob());
+                mobTurn();
+                game.getBattle().endTurn(game.getPlayer(), game.getMob());
+            } else {
+                cardLayout.show(gamePanel, "BATTLE");
+                mobTurn();
+                game.getBattle().turnFamiliar(game.getPlayer(), familiar);
+                battlePanel.refreshStats(game.getPlayer(), game.getMob());
+                game.getBattle().endTurn(game.getPlayer(), game.getMob());
+            }
+        }
     }
 
     //Responses to events in inventoryPanel

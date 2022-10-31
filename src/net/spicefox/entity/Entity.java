@@ -2,7 +2,6 @@ package net.spicefox.entity;
 
 import net.spicefox.gear.*;
 import net.spicefox.inventory.Inventory;
-import net.spicefox.potions.Consumable;
 
 public class Entity {
     private String name;
@@ -37,6 +36,7 @@ public class Entity {
 
     int wardMaxHp;
     int wardHp;
+    int wardCost;
 
     // Modifiers
     double modMaxHp;
@@ -146,7 +146,7 @@ public class Entity {
 
     public int getWardMaxHp() { return wardMaxHp; }
     public int getWardHp() { return wardHp; }
-
+    public int getWardCost() { return wardCost; }
     public double getModMaxHp() { return modMaxHp; }
     public double getModMaxMana() { return modMaxMana; }
     public double getModSpeed() { return modSpeed; }
@@ -268,11 +268,11 @@ public class Entity {
     public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
     }
-    public void setWardMaxHP() {
+    public void setWardMaxHp() {
         wardMaxHp = defense + shield.getModWardMaxHp();
-        wardHp = wardMaxHp;
     }
     public void setWardHp(int wardHp) { this.wardHp = wardHp; }
+    public void setWardCost() { wardCost = 15 + shield.getModWardCost(); }
     public void setModMaxHp() { modMaxHp = 1; }
     public void setModMaxMana() { modMaxMana = 1; }
     public void setModSpeed() { modSpeed = 1; }
@@ -293,11 +293,11 @@ public class Entity {
     }
 
     public void initGear() {
-        setHat(new HatDummy());
-        setRobe(new RobeDummy());
-        setBoots(new BootsDummy());
-        setShield(new ShieldDummy());
-        setWeapon(new WeaponDummy());
+        setHat(new HatDefault());
+        setRobe(new RobeDefault());
+        setBoots(new BootsDefault());
+        setShield(new ShieldDefault());
+        setWeapon(new WeaponDefault());
     }
 
     public void setStats() {
@@ -319,6 +319,8 @@ public class Entity {
         setCritChance();
         setSecondStrikeChance();
         setEvasion();
+        setWardMaxHp();
+        setWardCost();
     }
 
     // MISC

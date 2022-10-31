@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class Mob extends Entity{
 
     private double dropChanceFamiliar;
+    private String name;
     private int dropBits;
     private int dropXP;
 
@@ -23,11 +24,11 @@ public class Mob extends Entity{
     // TODO: Should take in location and pull mob type from the appropriate list
     public Mob() {
         setName("Dummy");
-        bootsList.add(new BootsDummy());
-        robeList.add(new RobeDummy());
-        hatList.add(new HatDummy());
-        shieldList.add(new ShieldDummy());
-        weaponList.add(new WeaponDummy());
+        bootsList.add(new BootsDefault());
+        robeList.add(new RobeDefault());
+        hatList.add(new HatDefault());
+        shieldList.add(new ShieldDefault());
+        weaponList.add(new WeaponDefault());
         setDropChanceFamiliar(0);
         setDropBits(0);
         setDropXP(0);
@@ -35,6 +36,7 @@ public class Mob extends Entity{
     }
 
     // Getters
+    public String getName() { return name; }
     public double getDropChanceFamiliar() { return dropChanceFamiliar; }
     public int getDropBits() { return dropBits; }
     public int getDropXP() { return dropXP; }
@@ -51,6 +53,10 @@ public class Mob extends Entity{
     public void setDropXP(int dropXP) {
         this.dropXP = dropXP;
     }
-    public void setFamiliarDrop(Familiar familiarDrop) { this.familiarDrop = familiarDrop; }
-
+    public void setFamiliarDrop(Familiar familiarDrop) {
+        this.familiarDrop = familiarDrop;
+    }
+    public void setName(String name) {
+    this.name = name;
+    }
 }
