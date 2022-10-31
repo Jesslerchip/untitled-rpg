@@ -1,19 +1,23 @@
 package net.spicefox.entity;
 
 import net.spicefox.familiar.Familiar;
-import net.spicefox.util.Inventory;
+
+import java.util.HashSet;
 
 public class Player extends Entity{
     private int spirit;
     private int bits;
+
+    private int numFamiliars;
+    private HashSet<Familiar> bestiary;
     private Familiar activeFamiliar;
-    private double modFamiliarXpRate;
-    private double modFamiliarDropRate;
+    private int modFamiliarXpRate;
+    private int modFamiliarDropRate;
 
     public Player() {
         setSpirit(1);
         setPlayerStats();
-        inventory = new Inventory();
+        bestiary = new HashSet<>();
     }
 
     // Getters
@@ -21,7 +25,10 @@ public class Player extends Entity{
         return spirit;
     }
     public int getBits() { return bits; }
+    public HashSet<Familiar> getBestiary() { return bestiary; }
     public Familiar getActiveFamiliar() { return activeFamiliar; }
+
+    public int getModFamiliarDropRate() { return modFamiliarDropRate; }
 
     // Setters
     public void setSpirit(int spirit) {
@@ -30,11 +37,11 @@ public class Player extends Entity{
     public void setBits(int bits) { this.bits = bits; }
 
     public void setModFamiliarXpRate() {
-        modFamiliarXpRate = spirit * 2.5;
+        modFamiliarXpRate = (int) (spirit * 2.5);
     }
 
     public void setModFamiliarDropRate() {
-        modFamiliarXpRate = spirit * 1.3;
+        modFamiliarDropRate = (int) (spirit * 1.3);
     }
 
     public void setPlayerStats() {

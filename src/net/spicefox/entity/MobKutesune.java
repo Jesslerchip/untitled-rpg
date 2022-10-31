@@ -1,5 +1,8 @@
 package net.spicefox.entity;
 
+import net.spicefox.familiar.Familiar;
+import net.spicefox.familiar.FamiliarKutesune;
+
 public class MobKutesune extends Mob {
 
     public MobKutesune() {
@@ -10,6 +13,7 @@ public class MobKutesune extends Mob {
         setDropChanceFamiliar(100);
         setDropBits(2);
         setDropXP(2);
+        setFamiliarDrop(new FamiliarKutesune());
     }
 
     public void setKutesuneSkills() {

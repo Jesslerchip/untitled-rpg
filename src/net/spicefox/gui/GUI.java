@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Random;
 
 public class GUI extends JFrame {
 
@@ -228,6 +229,13 @@ public class GUI extends JFrame {
             int mobBits = game.getMob().getDropBits();
             System.out.println(game.getPlayer().getName() + " earned " + mobBits + " bits!");
             game.getPlayer().setBits(game.getPlayer().getBits() + mobBits);
+
+            //Add familiar if passed check
+            Random random = new Random();
+            int familiarChance = random.nextInt(0, 100);
+            if (familiarChance <= game.getMob().getDropChanceFamiliar() + game.getPlayer().getModFamiliarDropRate()) {
+                game.getPlayer().getBestiary().add(game.getMob().getFamiliarDrop());
+            }
             cardLayout.show(gamePanel, "MAP");
             game.getPlayer().setHp(game.getPlayer().getMaxHp()); //NOT PERMANENT? Resets player at map
         }
