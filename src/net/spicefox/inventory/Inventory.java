@@ -33,9 +33,20 @@ public class Inventory {
     }
 
     public boolean checkForItem(Equippable item) {
-        return false;
+        return equipment.equipmentHas(item);
     }
 
+    public int getEquipmentSize() {
+        return equipment.getSize();
+    }
+
+    public Equippable getEquipmentAtIndex(int i) {
+        return equipment.getEquipmentAtIndex(i);
+    }
+
+    public void remove (Equippable item) {
+        equipment.removeEquipment(item);
+    }
     public void printInventory() {
         System.out.println(satchel + "\n" + equipment);
     }

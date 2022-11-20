@@ -11,6 +11,6 @@ public class BootsDefault extends Boots {
     }
     @Override
     public String toString() {
-        return "None";
+        return "Default Boots";
     }
 }

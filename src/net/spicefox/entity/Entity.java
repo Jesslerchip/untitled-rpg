@@ -59,6 +59,10 @@ public class Entity {
         initSkills();
         setStats();
         inventory = new Inventory();
+        inventory.addToEquipment(new BootsDefault());
+        inventory.addToEquipment(new BootsDefault());
+        inventory.addToEquipment(new HatDefault());
+        inventory.addToEquipment(new ShieldDefault());
     }
 
     // GETTERS

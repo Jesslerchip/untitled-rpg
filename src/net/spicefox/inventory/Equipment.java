@@ -16,8 +16,25 @@ public class Equipment {
     public void addEquipment(Equippable item) {
         if (equipment.size() < size) {
             equipment.add(item);
-            size++;
         }
+    }
+
+    public void removeEquipment(Equippable item) {
+        if (equipment.contains(item)) {
+            equipment.remove(item);
+        }
+    }
+
+    public Equippable getEquipmentAtIndex (int index) {
+        return equipment.get(index);
+    }
+
+    public int getSize () {
+        return equipment.size();
+    }
+
+    public boolean equipmentHas(Equippable item) {
+        return equipment.contains(item);
     }
 
     @Override

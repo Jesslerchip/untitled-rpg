@@ -9,6 +9,6 @@ public class WeaponDefault extends Weapon {
     }
     @Override
     public String toString() {
-        return "None";
+        return "Default Weapon";
     }
 }

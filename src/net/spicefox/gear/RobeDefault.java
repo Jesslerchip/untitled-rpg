@@ -11,6 +11,6 @@ public class RobeDefault extends Robe {
     }
     @Override
     public String toString() {
-        return "None";
+        return "Default Robe";
     }
 }

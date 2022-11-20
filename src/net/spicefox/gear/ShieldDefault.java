@@ -12,6 +12,6 @@ public class ShieldDefault extends Shield{
     }
     @Override
     public String toString() {
-        return "None";
+        return "Default Shield";
     }
 }

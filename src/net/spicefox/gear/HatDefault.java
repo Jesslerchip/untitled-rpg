@@ -10,6 +10,6 @@ public class HatDefault extends Hat {
     }
     @Override
     public String toString() {
-        return "None";
+        return "Default Hat";
     }
 }

@@ -333,6 +333,7 @@ public class GUI extends JFrame {
             cardLayout.show(gamePanel, "SHOP_HOME");
         }
         if (e.getSource() == mapPanel.getMapInventoryButton()) {
+            inventoryPanel.setupInventory(game.getPlayer().getInventory());
             cardLayout.show(gamePanel, "INVENTORY");
         }
     }
