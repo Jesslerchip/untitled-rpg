@@ -1,5 +1,7 @@
 package net.spicefox.gui;
 
+import net.spicefox.entity.Mob;
+import net.spicefox.entity.Player;
 import net.spicefox.familiar.Familiar;
 import net.spicefox.util.*;
 import net.spicefox.gear.*;
@@ -235,44 +237,47 @@ public class GUI extends JFrame {
 
     // TODO: Add code for taking gear damage and losing bits
     private void checkBattleStatus() {
-        if (game.getPlayer().getHp() <= 0) {
+        Player player = game.getPlayer();
+        Mob mob = game.getMob();
+        if (player.getHp() <= 0) {
             cardLayout.show(gamePanel, "MAP");
-            game.getPlayer().setHp(game.getPlayer().getMaxHp()); //NOT PERMANENT? Resets player at map
+            player.setHp(player.getMaxHp()); //NOT PERMANENT? Resets player at map
         }
-        if (game.getMob().getHp() <= 0) {
+        if (mob.getHp() <= 0) {
             // Add bits
-            int mobBits = game.getMob().getDropBits();
-            System.out.println(game.getPlayer().getName() + " earned " + mobBits + " bits!");
-            game.getPlayer().setBits(game.getPlayer().getBits() + mobBits);
+            int mobBits = mob.getDropBits();
+            System.out.println(player.getName() + " earned " + mobBits + " bits!");
+            player.setBits(player.getBits() + mobBits);
 
             //Add familiar if passed check
             Random random = new Random();
             int familiarChance = random.nextInt(0, 100);
-            if (familiarChance <= game.getMob().getDropChanceFamiliar() + game.getPlayer().getModFamiliarDropRate()) {
-                game.getPlayer().getBestiary().put(game.getMob().getName().toUpperCase(),
-                        game.getMob().getFamiliarDrop());
-                System.out.println(game.getPlayer().getName() + " recovered a " +
-                        game.getMob().getFamiliarDrop().getName() + " Familiar!");
+            if (familiarChance <= mob.getDropChanceFamiliar() + player.getModFamiliarDropRate() &&
+                    player.getBestiary().get(mob.getName().toUpperCase()) == null) {
+                player.getBestiary().put(mob.getName().toUpperCase(),
+                        mob.getFamiliarDrop());
+                System.out.println(player.getName() + " recovered a " +
+                        mob.getFamiliarDrop().getName() + " Familiar!");
             }
             cardLayout.show(gamePanel, "MAP");
-            game.getPlayer().setMana(game.getPlayer().getMaxMana());
+            player.setMana(player.getMaxMana());
         }
 
         // Broken gear check
-        if (game.getPlayer().getBoots().toString() != "None" && game.getPlayer().getBoots().getDurability() <= 0) {
-            game.getPlayer().setBoots(new BootsDefault());
+        if (player.getBoots().toString() != "None" && player.getBoots().getDurability() <= 0) {
+            player.setBoots(new BootsDefault());
         }
-        if (game.getPlayer().getRobe().toString() != "None" && game.getPlayer().getRobe().getDurability() <= 0) {
-            game.getPlayer().setRobe(new RobeDefault());
+        if (player.getRobe().toString() != "None" && player.getRobe().getDurability() <= 0) {
+            player.setRobe(new RobeDefault());
         }
-        if (game.getPlayer().getHat().toString() != "None" && game.getPlayer().getHat().getDurability() <= 0) {
-            game.getPlayer().setHat(new HatDefault());
+        if (player.getHat().toString() != "None" && player.getHat().getDurability() <= 0) {
+            player.setHat(new HatDefault());
         }
-        if (game.getPlayer().getShield().toString() != "None" && game.getPlayer().getShield().getDurability() <= 0) {
-            game.getPlayer().setShield(new ShieldDefault());
+        if (player.getShield().toString() != "None" && player.getShield().getDurability() <= 0) {
+            player.setShield(new ShieldDefault());
         }
-        if (game.getPlayer().getWeapon().toString() != "None" && game.getPlayer().getWeapon().getDurability() <= 0) {
-            game.getPlayer().setWeapon(new WeaponDefault());
+        if (player.getWeapon().toString() != "None" && player.getWeapon().getDurability() <= 0) {
+            player.setWeapon(new WeaponDefault());
         }
     }
 
