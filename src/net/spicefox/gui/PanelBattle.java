@@ -1,7 +1,13 @@
 package net.spicefox.gui;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 import net.spicefox.entity.*;
 
 public class PanelBattle extends JPanel {
@@ -14,8 +20,10 @@ public class PanelBattle extends JPanel {
     private JLabel playerManaLabel;
     private JLabel mobHPLabel;
     private JLabel mobManaLabel;
+    private JLabel imgLabel;
 
     public PanelBattle() {
+        setLayout(new FlowLayout());
 
         // Buttons
         attackButton = new JButton("Attack");
@@ -31,6 +39,8 @@ public class PanelBattle extends JPanel {
         potionButton.setActionCommand("POTION");
         familiarButton.setActionCommand("FAMILIAR_SUMMON");
 
+        imgLabel = new JLabel(new ImageIcon("src/net/spicefox/assets/kutesune.png"));
+
         // Labels
         playerHPLabel = new JLabel();
         playerManaLabel = new JLabel();
@@ -45,6 +55,7 @@ public class PanelBattle extends JPanel {
         this.add(playerManaLabel);
         this.add(mobHPLabel);
         this.add(mobManaLabel);
+        this.add(imgLabel);
     }
 
     public void addPanelListener(ActionListener listener) {
