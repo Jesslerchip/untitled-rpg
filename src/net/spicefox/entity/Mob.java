@@ -53,6 +53,7 @@ public class Mob extends Entity{
     public void setDropXP(int dropXP) {
         this.dropXP = dropXP;
     }
+    public void setBehavior(String behavior) { this.behavior = behavior; }
     public void setFamiliarDrop(Familiar familiarDrop) {
         this.familiarDrop = familiarDrop;
     }

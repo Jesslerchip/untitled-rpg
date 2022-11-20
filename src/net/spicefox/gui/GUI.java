@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -252,6 +253,23 @@ public class GUI extends JFrame {
             }
             cardLayout.show(gamePanel, "MAP");
             game.getPlayer().setMana(game.getPlayer().getMaxMana());
+        }
+
+        // Broken gear check
+        if (game.getPlayer().getBoots().toString() != "None" && game.getPlayer().getBoots().getDurability() <= 0) {
+            game.getPlayer().setBoots(new BootsDefault());
+        }
+        if (game.getPlayer().getRobe().toString() != "None" && game.getPlayer().getRobe().getDurability() <= 0) {
+            game.getPlayer().setRobe(new RobeDefault());
+        }
+        if (game.getPlayer().getHat().toString() != "None" && game.getPlayer().getHat().getDurability() <= 0) {
+            game.getPlayer().setHat(new HatDefault());
+        }
+        if (game.getPlayer().getShield().toString() != "None" && game.getPlayer().getShield().getDurability() <= 0) {
+            game.getPlayer().setShield(new ShieldDefault());
+        }
+        if (game.getPlayer().getWeapon().toString() != "None" && game.getPlayer().getWeapon().getDurability() <= 0) {
+            game.getPlayer().setWeapon(new WeaponDefault());
         }
     }
 

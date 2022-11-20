@@ -269,7 +269,7 @@ public class Entity {
         this.weapon = weapon;
     }
     public void setWardMaxHp() {
-        wardMaxHp = defense + shield.getModWardMaxHp();
+        wardMaxHp = 10 + defense + shield.getModWardMaxHp();
     }
     public void setWardHp(int wardHp) { this.wardHp = wardHp; }
     public void setWardCost() { wardCost = 15 + shield.getModWardCost(); }

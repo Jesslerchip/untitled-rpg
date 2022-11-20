@@ -3,6 +3,7 @@ package net.spicefox.gear;
 public class Shield implements Equippable {
 
     private int durability;
+    private int cost;
     private int modDefense;
     private int modWardMaxHp;
     private int modWardCost;
@@ -10,7 +11,7 @@ public class Shield implements Equippable {
 
     // Getters
     public int getDurability() { return durability; }
-
+    public int getCost() { return cost; }
     public int getModDefense() { return modDefense; }
 
     public int getModWardMaxHp() { return modWardMaxHp; }
@@ -20,6 +21,7 @@ public class Shield implements Equippable {
 
     // Setters
     public void setDurability(int durability) { this.durability = durability; }
+    public void setCost(int cost) { this.cost = cost; }
     public void setModDefense(int modDefense) { this.modDefense = modDefense; }
     public void setModWardMaxHp(int modWardMaxHp) { this.modWardMaxHp = modWardMaxHp; }
     public void setModWardCost(int wardCost) { this.modWardCost = wardCost; }

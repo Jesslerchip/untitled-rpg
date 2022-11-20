@@ -9,10 +9,10 @@ public class MobKutesune extends Mob {
         setName("Kutesune");
         setKutesuneSkills();
         setStats();
-        behavior = "CUTE";
+        setBehavior("CUTE");
         setDropChanceFamiliar(100);
-        setDropBits(2);
-        setDropXP(2);
+        setDropBits(5);
+        setDropXP(5);
         setFamiliarDrop(new FamiliarKutesune());
     }
 

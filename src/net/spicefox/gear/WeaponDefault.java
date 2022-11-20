@@ -3,6 +3,7 @@ package net.spicefox.gear;
 public class WeaponDefault extends Weapon {
     public WeaponDefault() {
         setDurability(0);
+        setCost(0);
         setModAccuracy(0);
         setModAttack(0);
     }
